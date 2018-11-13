@@ -11,6 +11,7 @@
     <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script> <!--GUI--->
     <script src="https://rawgit.com/atomicguy/aframe-fence-component/master/dist/aframe-fence-component.min.js"></script>
 
+
 </head>
 
 <body>
@@ -27,17 +28,20 @@
             <img id="segway" src="images/segway.png">
             <img id="bicycle" src="images/bicycle.png">
             <img id="barrier" src="images/barrier.png">
+            <!--loading the lambo object -->
+            <a-asset-item id="lambo_obj" src="3D models/Lambo/Avent.obj"></a-asset-item>
+            <a-asset-item id="lambo_mtl" src="3D models/Lambo/Avent.mtl"></a-asset-item>
         </a-assets>
 
         <!-- Envrionments -->
-        <a-sky src="#sky"></a-sky>
+        <a-sky src="#sky" radius="5000"></a-sky>
         <a-plane repeat="1 10" src="#road" position="0 0 -4" rotation="-90 0 0" width="10" height="100" color="#7BC8A4" shadow></a-plane>
         <a-plane repeat="1 10" src="#road" position="0 0 -59" rotation="-90 -90 0" width="10" height="100" color="#7BC8A4" shadow></a-plane>
-        
+
 
        <!--  <a-plane repeat="1 10" src="#floor" position="7.5 0 -4" rotation="-90 0 0" width="5" height="100" color="#7BC8A4" shadow></a-plane>
         <a-plane repeat="1 10" src="#floor" position="-7.5 0 -4" rotation="-90 0 0" width="5" height="100" color="#7BC8A4" shadow></a-plane> -->
-        <a-box repeat="3 1" src="#barrier" position="0 1 10" rotation="0 0 0" width="15" height="1.5"></a-box>    
+        <a-box repeat="3 1" src="#barrier" position="0 1 10" rotation="0 0 0" width="15" height="1.5"></a-box>
 
         <a-plane repeat="1 50" src="#sideroad" position="5.2 0 -4" rotation="-90 0 0" width="0.6" height="100" color="#7BC8A4" shadow></a-plane>
         <a-plane repeat="1 50" src="#sideroad" position="-5.2 0 -4" rotation="-90 0 0" width="0.6" height="100" color="#7BC8A4" shadow></a-plane>
@@ -51,8 +55,19 @@
         <a-plane repeat="1 100" src="#walkway" position="16 0 -4" rotation="-90 0 0" width="5" height="100" color="#7BC8A4" shadow></a-plane>
         <a-plane repeat="1 100" src="#walkway" position="-16 0 -4" rotation="-90 0 0" width="5" height="100" color="#7BC8A4" shadow></a-plane>
 
-        <a-box repeat="1 100" position="21 0 -4" rotation="-90 0 0" width="5" height="100" color="#fc8c76" depth="50" shadow></a-box>
-        <a-box repeat="1 100" position="-21 0 -4" rotation="-90 0 0" width="5" height="100" color="#fc8c76" depth="50" shadow></a-box>
+
+        <!--- big purple color box, dont know why it is there--->
+        <!-- <a-box repeat="1 100" position="21 0 -4" rotation="-90 0 0" width="5" height="100" color="#fc8c76" depth="50" shadow></a-box>
+        <a-box repeat="1 100" position="-21 0 -4" rotation="-90 0 0" width="5" height="100" color="#fc8c76" depth="50" shadow></a-box> -->
+
+
+
+            <!--- lambo vroom voom -->
+            <a-entity>
+              <a-obj-model src="#lambo_obj" mtl="#lambo_mtl" position="2 0 7" rotation="0 -90 0"></a-obj-model>
+              <a-animation attribute="position" from="2 0 6" to="2 0 -100" repeat="indefinite" dur="10000"></a-animation>
+            </a-entity>
+
 
 
 
@@ -72,11 +87,11 @@
           <a-entity geometry="primitive: plane; height: 0.4; width: 1.2" position="-1.45 0.7 -1" material="color: gray; opacity: 0.5" id="hazardID"></a-entity>
           <a-entity geometry="primitive: plane; height: 0.4; width: 1.2" position="1.40 0.7 -1" material="color: gray; opacity: 0.5" id="hazardID"></a-entity>
         </a-entity>
-        
+
         <!-- Start menu -->
-        <a-entity id="scene0">  
+        <a-entity id="scene0">
             <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" component-padding="1" opacity="1" width="9" height="4.5" position="0 2.5 -2" rotation="0 0 0" panel-color="#FFDA03">
-                <a-gui-label 
+                <a-gui-label
                     width="4" height="1"
                     value="Virac"
                     font-family="Impact"
@@ -97,7 +112,7 @@
                     font-color="#000"
                     border-color="#000"
                     hover-color="#DD9E00"
-                    border-width="2"> 
+                    border-width="2">
                 </a-gui-button>
             </a-gui-flex-container>
         </a-entity>
@@ -116,7 +131,7 @@
                     font-color="#000"
                     border-color="#000"
                     hover-color="#DD9E00"
-                    border-width="2"> 
+                    border-width="2">
                     <a-image src="#bicycle" width="2" height="2" position="0.2 0 0.25"></a-image>
                     <a-text value="Cyclist" font="monoid" position="-0.4 1.4 0.25" color="#2B2B2B"></a-text>
                 </a-gui-button>
@@ -130,13 +145,13 @@
                     font-color="#000"
                     border-color="#000"
                     hover-color="#DD9E00"
-                    border-width="2"> 
+                    border-width="2">
                     <a-image src="#segway" width="2" height="2" position="-0.3 0 0.25"></a-image>
                     <a-text value="PMD User" font="monoid" position="-0.4 1.4 0.25" color="#2B2B2B"></a-text>
                 </a-gui-button>
             </a-gui-flex-container>
         </a-entity>
-        
+
         <!-- Choose Mode -->
         <a-entity id="scene2">
             <a-text value="Preparation" font="monoid" position="1 2.4 -6.25" color="#2B2B2B"></a-text>
