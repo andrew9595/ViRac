@@ -120,7 +120,7 @@
         </a-entity>
         
         <!-- Start menu -->
-        <a-entity id="menu">  
+        <a-entity id="menu">
             <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="9" height="4.5" position="0 2.5 -5" rotation="0 0 0" panel-color="#FFDA03">
                 <a-gui-label 
                     width="3" height="1"
@@ -173,6 +173,39 @@
                 </a-gui-flex-container>
             </a-gui-flex-container>
         </a-entity>
+
+
+
+        <a-entity id="achievementPrompt">
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="3" height="1" position="-2.929 4.952 -16.085" rotation="0 0 0" panel-color="#ff8080">
+                <a-gui-label
+                        width="3" height="1"
+                        value="Show Achievement"
+                        onclick="toShowAchievement()"
+                        font-family="Impact"
+                        font-size = "100px"
+                        margin="0 0 0.0 0"
+                        font-color="#000"
+                        background-color="#ff8080">
+                </a-gui-label>
+            </a-gui-flex-container>
+        </a-entity>
+
+
+        <a-entity id="showAchievement" visible="false">
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="9" height="4.5" position="9.898 4.675 -14.356" rotation="0 0 0" panel-color="#8080ff">
+                <a-gui-label
+                        width="3" height="1"
+                        value="Show Achievement"
+                        onclick="toShowAchievement()"
+                        font-family="Impact"
+                        font-size = "100px"
+                        margin="0 0 0.0 0"
+                        font-color="#000"
+                        background-color="#8080ff">
+                </a-gui-label>
+            </a-gui-flex-container>
+        </a-entity>
     </a-scene>
 </body>
 </html>
@@ -198,6 +231,10 @@
 
      function toDesignerint(){
         window.location.replace("designer.html");
+    }
+    function toShowAchievement(){
+        var showAchievement = document.querySelector("#showAchievement");
+        showAchievement.setAttribute("visible",true);
     }
 
     function greenLight() {
