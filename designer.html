@@ -30,6 +30,9 @@
             <img id="hdb" src="images/hdb.png">
             <img id="hdbg" src="images/hdbg.png">
             <img id="park" src="images/park.png">
+            <img id="sun" src="images/sun.png">
+            <img id="rain" src="images/rain.png">
+            <img id="moon" src="images/moon.png">
             <!--loading the lambo object -->
             <a-asset-item id="lambo_obj" src="3D models/Lambo/Avent.obj"></a-asset-item>
             <a-asset-item id="lambo_mtl" src="3D models/Lambo/Avent.mtl"></a-asset-item>
@@ -175,7 +178,6 @@
                         border-width="2"> 
                     </a-gui-button>
                 </a-gui-flex-container>
-
                 <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0.8" width="9" height="1" position="5 5.5 -5" rotation="0 0 0" panel-color="#FFDA03">
                     <a-gui-label 
                         width="5" height="0.5"
@@ -223,6 +225,57 @@
                     </a-gui-button>
                 </a-gui-flex-container>
                 <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0.8" width="9" height="1" position="5 5.5 -5" rotation="0 0 0" panel-color="#FFDA03">
+                    <a-gui-label 
+                        width="3.5" height="0.5"
+                        value="Weather conditions"
+                        font-family="Impact"
+                        font-size = "100px"
+                        font-color="#000"
+                        margin="0 0 0 0"
+                        background-color="#FFDA03">
+                    </a-gui-label>
+                    <a-gui-button
+                        id="sunBtn"
+                        width="1.5" height="0.75"
+                        onclick="setSun()"
+                        value="_"
+                        font-family="Impact"
+                        background-color="#FFDA03"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2"> 
+                        <a-image src="#sun" width="0.5" height="0.5" position="0 0 0.25"></a-image>
+                    </a-gui-button>
+                    <a-gui-button
+                        id="rainBtn"
+                        width="1.5" height="0.75"
+                        onclick="setRain()"
+                        value="_"
+                        font-family="Impact"
+                        background-color="#FFDA03"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2">
+                        <a-image src="#rain" width="0.5" height="0.5" position="0 0 0.25"></a-image> 
+                    </a-gui-button>
+                    <a-gui-button
+                        id="moonBtn"
+                        width="1.5" height="0.75"
+                        onclick="setMoon()"
+                        icon="social-github"
+                        value="_"
+                        font-family="Impact"
+                        background-color="#FFDA03"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2">
+                        <a-image src="#moon" width="0.5" height="0.5" position="0 0 0.25"></a-image>  
+                    </a-gui-button>
+                </a-gui-flex-container>
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0.8" width="9" height="1" position="5 5.5 -5" rotation="0 0 0" panel-color="#FFDA03">
                     <a-gui-button
                         width="3.5" height="0.75"
                         onclick="toHome()"
@@ -259,53 +312,82 @@
 
 <script>
 
-var pedestriansCount = 1;
-var vehiclesCount = 1;
+    var sunBtn = document.getElementById('sunBtn');
+    var rainBtn = document.getElementById('rainBtn');
+    var moonBtn = document.getElementById('moonBtn');
 
-document.getElementById('pedestriansVal').setAttribute('value',''+pedestriansCount+'');
-document.getElementById('vehiclesVal').setAttribute('value',''+vehiclesCount+'');
+    var pedestriansCount = 1;
+    var vehiclesCount = 1;
 
+    document.getElementById('pedestriansVal').setAttribute('value',''+pedestriansCount+'');
+    document.getElementById('vehiclesVal').setAttribute('value',''+vehiclesCount+'');
 
-function addPedestrians(){
-    pedestriansCount++;
-    console.log(pedestriansCount);
-};
+    //Set stage 
+    setStage();
 
-function addVehicles(){
-    vehiclesCount++;
-    console.log(vehiclesCount);
-};
+    //Set the stage of page assets on load
+    function setStage(){
+        setSun();
+    }
 
-function subtractPedestrians(){
-    if (pedestriansCount > 1){
-        pedestriansCount--;
+    function setSun(){
+        sunBtn.setAttribute('background-color','#F98918');
+        rainBtn.setAttribute('background-color','#FFDA03');
+        moonBtn.setAttribute('background-color','#FFDA03');
+    }
+
+    // function setRain(){
+    //     rainBtn.setAttribute('background-color','#F98918');
+    //     sunBtn.setAttribute('background-color','#FFDA03');
+    //     moonBtn.setAttribute('background-color','#FFDA03');
+    // }
+
+    // function setMoon(){
+    //     moonBtn.setAttribute('background-color','#F98918');
+    //     sunBtn.setAttribute('background-color','#FFDA03');
+    //     rainBtn.setAttribute('background-color','#FFDA03');
+    // }
+
+    function addPedestrians(){
+        pedestriansCount++;
         console.log(pedestriansCount);
-    }
-};
+    };
 
-function subtractVehicles(){
-    if (vehiclesCount > 1){
-        vehiclesCount--;
+    function addVehicles(){
+        vehiclesCount++;
         console.log(vehiclesCount);
+    };
+
+    function subtractPedestrians(){
+        if (pedestriansCount > 1){
+            pedestriansCount--;
+            console.log(pedestriansCount);
+        }
+    };
+
+    function subtractVehicles(){
+        if (vehiclesCount > 1){
+            vehiclesCount--;
+            console.log(vehiclesCount);
+        }
+    };
+
+    setInterval(function() {
+        document.getElementById('pedestriansVal').setAttribute('font-color','#FFF');
+        document.getElementById('pedestriansVal').setAttribute('background-color','#FFF');
+        document.getElementById('pedestriansVal').setAttribute('value',pedestriansCount);
+        document.getElementById('pedestriansVal').setAttribute('font-color','#000');
+
+        document.getElementById('vehiclesVal').setAttribute('font-color','#FFF');
+        document.getElementById('vehiclesVal').setAttribute('background-color','#FFF');
+        document.getElementById('vehiclesVal').setAttribute('value',vehiclesCount);
+        document.getElementById('vehiclesVal').setAttribute('font-color','#000');
+    }, 1000);
+
+
+    // Button href links
+    function toHome(){
+        window.location.replace("index.html");
     }
-};
-
-setInterval(function() {
-    document.getElementById('pedestriansVal').setAttribute('font-color','#FFF');
-    document.getElementById('pedestriansVal').setAttribute('background-color','#FFF');
-    document.getElementById('pedestriansVal').setAttribute('value',pedestriansCount);
-    document.getElementById('pedestriansVal').setAttribute('font-color','#000');
-
-    document.getElementById('vehiclesVal').setAttribute('font-color','#FFF');
-    document.getElementById('vehiclesVal').setAttribute('background-color','#FFF');
-    document.getElementById('vehiclesVal').setAttribute('value',vehiclesCount);
-    document.getElementById('vehiclesVal').setAttribute('font-color','#000');
-}, 1000);
-
-
-// Button href links
-function toHome(){
-    window.location.replace("index.html");
-}
 
 </script>
