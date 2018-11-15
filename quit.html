@@ -118,23 +118,23 @@
         
         <!-- Start menu -->
         <a-entity id="menu">  
-            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="9" height="4.5" position="0 2.5 -5" rotation="0 0 0" panel-color="#FFDA03">
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="15" height="4.5" position="0 2.5 -5" rotation="0 0 0" panel-color="#FFDA03">
                 <a-gui-label 
-                    width="3" height="1"
-                    value="Virac"
+                    width="6" height="1"
+                    value="Quiting Game"
                     font-family="Impact"
                     font-size = "350px"
                     margin="0 0 0.0 0"
                     font-color="#000"
                     background-color="#FFDA03">
-                    <a-text value="Virtual Riding and Cycling" position="-1.2 -0.7 0" color="#2B2B2B"></a-text>
+                    <a-text value="Are you sure you want to quit?" position="-1.2 -0.7 0" color="#2B2B2B"></a-text>
                 </a-gui-label>
                 <a-gui-flex-container flex-direction="column" justify-content="center" align-items="normal" opacity="0.2" width="4" height="3" position="0 2.5 -5" rotation="0 0 0" panel-color="#FFDA03">
                     <a-gui-button
-                        width="2.5" height="0.75"
-                        onclick="toStageselect()"
+                        width="3.5" height="0.75"
+                        onclick="quit()"
                         icon="social-github"
-                        value="Start Game"
+                        value="Yes, let's quit this torture"
                         font-family="Impact"
                         background-color="#FFDA03"
                         font-color="#000"
@@ -143,10 +143,10 @@
                         border-width="2"> 
                     </a-gui-button>
                     <a-gui-button
-                        width="2.5" height="0.75"
-                        onclick="toTutorial()"
+                        width="3.5" height="0.75"
+                        onclick="back()"
                         icon="social-github"
-                        value="Tutorial"
+                        value="No, I love this game"
                         font-family="Impact"
                         margin="-0.2 0 0.6 1"
                         background-color="#FFDA03"
@@ -155,33 +155,20 @@
                         hover-color="#DD9E00"
                         border-width="2"> 
                     </a-gui-button>
-                    <a-gui-button
-                        width="2.5" height="0.75"
-                        onclick="toDesignerint()"
-                        icon="social-github"
-                        value="Designer Interface"
-                        font-family="Impact"
-                        background-color="#FFDA03"
-                        font-color="#000"
-                        border-color="#000"
-                        hover-color="#DD9E00"
-                        border-width="2"> 
-                    </a-gui-button>
-                </a-gui-flex-container>
             </a-gui-flex-container>
         </a-entity>
 
         <a-entity id="menu">  
-            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="9" height="4.5" position="0 2.5 10" rotation="0 0 0" panel-color="#c20300">
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="9" height="4.5" position="0 2.5 10" rotation="0 0 0" panel-color="#34c41e">
                 <a-gui-flex-container flex-direction="column" justify-content="center" align-items="normal" opacity="0.2" width="4" height="3" position="0 2.5 -5" rotation="0 180 0" panel-color="#FFDA03">
                     <a-gui-button
                         width="2.5" height="0.75"
-                        onclick="quitGame()"
+                        onclick="back()"
                         icon="social-github"
-                        value="Quit Game"
+                        value="Back to main screen"
                         font-family="Impact"
                         margin="-0.2 0 0.6 1"
-                        background-color="#c20300"
+                        background-color="#34c41e"
                         font-color="#000"
                         border-color="#000"
                         hover-color="#DD9E00"
@@ -217,8 +204,12 @@
         window.location.replace("designer.html");
     }
 
-    function quitGame(){
-        window.location.replace("quit.html");
+    function back(){
+        window.location.replace("index.html");
+    }
+
+    function quit(){
+        window.location.replace("home.html");
     }
 
     function greenLight() {
@@ -250,7 +241,4 @@
             greenLight()
         }, 2000);
     }
-
-
-
 </script>
