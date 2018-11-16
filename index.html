@@ -193,10 +193,66 @@
         </a-entity>
 
 
-        <a-plane id="showAchievement" visible="false" material="transparent: true; visible: false;" >
-                    <a-image src="#achievements" width="4" height="4" position="-2.929 2.5 -16.085" rotation="0 10 0"></a-image>
-
+        <a-plane id="showAchievement" visible="false" material="transparent: true; visible: false;">
+            <a-image src="#achievements" width="4" height="4" position="-2.929 2.5 -16.085" rotation="0 0 0"></a-image>
+            <a-gui-flex-container opacity="0" flex-direction="column" justify-content="center" align-items="normal" opacity="0" width="1.5" height="3" position="-4 2.3 -16" rotation="0 0 0" panel-color="red" >
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" onclick="showAchievementAll()">
+                </a-gui-flex-container>
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" panel-color="yellow">
+                </a-gui-flex-container>
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" panel-color="green">
+                </a-gui-flex-container>
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" panel-color="purple">
+                </a-gui-flex-container>
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" panel-color="red">
+                </a-gui-flex-container>
+            </a-gui-flex-container>
+            <a-gui-flex-container opacity="0" flex-direction="column" justify-content="center" align-items="normal" opacity="1" width="1.5" height="3" position="-2 2.3 -16" rotation="0 0 0" panel-color="red" >
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" visible="true" onclick="showAchievementAll()">
+                </a-gui-flex-container>
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" panel-color="yellow">
+                </a-gui-flex-container>
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" panel-color="green">
+                </a-gui-flex-container>
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" panel-color="purple">
+                </a-gui-flex-container>
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" panel-color="red">
+                </a-gui-flex-container>
+            </a-gui-flex-container>
         </a-plane>
+
+
+        <a-entity id="allAchievements" visible="false">
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="4" height="1" position="-2.929 2 -14.085" rotation="0 0 0" panel-color="#ff80c0">
+                <a-gui-label
+                        width="3" height="0.5"
+                        value="You rode on PCN/Road for the 10th time!"
+                        onclick=""
+                        position="0 -1 0"
+                        font-family="Impact"
+                        font-size = "50px"
+                        margin="0 0 0.0 0"
+                        font-color="#000"
+                        background-color="#ff80c0">
+                </a-gui-label>
+                <a-gui-button
+                        width="0.7" height="0.3"
+                        onclick="closeAllAchievement()"
+                        icon="social-github"
+                        value="Close"
+                        position="-4 1 -14"
+                        font-family="Impact"
+                        font-size="20px"
+                        background-color="#ff8080"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2">
+                </a-gui-button>
+            </a-gui-flex-container>
+        </a-entity>
+
+
     </a-scene>
 </body>
 </html>
@@ -230,6 +286,15 @@
         disableButton.setAttribute("visible",false);
     }
 
+    function showAchievementAll(){
+        var allAchievement = document.querySelector("#allAchievements");
+        allAchievement.setAttribute("visible",true);
+    }
+
+    function closeAllAchievement(){
+        var allAchievement = document.querySelector("#allAchievements");
+        allAchievement.setAttribute("visible",false);
+    }
     function greenLight() {
         setTimeout(function(){
             document.getElementById('red').setAttribute('visible', 'false');
@@ -259,4 +324,6 @@
             greenLight()
         }, 2000);
     }
+
+
 </script>
