@@ -17,22 +17,19 @@
     <a-scene>
         <a-assets>
             <!-- All images assets -->
-            <img id="sky" src="images/sky.png">
-            <img id="road" src="images/road.jpg">
-            <img id="sideroad" src="images/sideroad.jpg">
-            <img id="grass" src="images/grass.jpg">
-            <img id="cpavement" src="images/cycling_pavement.jpg">
-            <img id="walkway" src="images/walkway.jpg">
-            <img id="floor" src="images/floor.jpg">
-            <img id="segway" src="images/segway.png">
-            <img id="bicycle" src="images/bicycle.png">
-            <img id="barrier" src="images/barrier.png">
-            <img id="hdb" src="images/hdb.png">
-            <img id="hdbg" src="images/hdbg.png">
-            <img id="park" src="images/park.png">
-            <!--loading the lambo object -->
-            <a-asset-item id="lambo_obj" src="3D models/Lambo/Avent.obj"></a-asset-item>
-            <a-asset-item id="lambo_mtl" src="3D models/Lambo/Avent.mtl"></a-asset-item>
+            <img id="sky" src="images/environment/sky.png">
+            <img id="road" src="images/environment/road.jpg">
+            <img id="sideroad" src="images/environment/sideroad.jpg">
+            <img id="grass" src="images/environment/grass.jpg">
+            <img id="cpavement" src="images/environment/cycling_pavement.jpg">
+            <img id="walkway" src="images/environment/walkway.jpg">
+            <img id="floor" src="images/environment/floor.jpg">
+            <img id="segway" src="images/menu/segway.png">
+            <img id="bicycle" src="images/menu/bicycle.png">
+            <img id="barrier" src="images/environment/barrier.png">
+            <img id="hdb" src="images/environment/hdb.png">
+            <img id="hdbg" src="images/environment/hdbg.png">
+            <img id="park" src="images/environment/park.png">
         </a-assets>
 
         <!-- Sky -->
@@ -97,12 +94,6 @@
 
         <!-- Background -->
         <a-box repeat= "10 1" src="#hdbg" position="5 19 -80" rotation="0 0 0" width="1000" height="40" transparent="true"></a-box>
-
-        <!-- Lambo -->
-        <a-entity>
-          <a-obj-model src="#lambo_obj" mtl="#lambo_mtl" position="2 0 7" rotation="0 -90 0"></a-obj-model>
-          <a-animation attribute="position" from="2 0 6" to="2 0 -100" repeat="indefinite" dur="10000"></a-animation>
-        </a-entity>
 
         <!-- Camera + cursor. -->
         <a-entity camera position="-2 1.6 0.5" look-controls wasd-controls="acceleration: 500" id="camera">
