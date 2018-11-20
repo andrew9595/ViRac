@@ -17,23 +17,35 @@
     <a-scene>
         <a-assets>
             <!-- All images assets -->
-            <img id="sky" src="images/sky.png">
-            <img id="road" src="images/road.jpg">
-            <img id="sideroad" src="images/sideroad.jpg">
-            <img id="grass" src="images/grass.jpg">
-            <img id="cpavement" src="images/cycling_pavement.jpg">
-            <img id="walkway" src="images/walkway.jpg">
-            <img id="floor" src="images/floor.jpg">
-            <img id="segway" src="images/segway.png">
-            <img id="bicycle" src="images/bicycle.png">
-            <img id="barrier" src="images/barrier.png">
-            <img id="hdb" src="images/hdb.png">
-            <img id="hdbg" src="images/hdbg.png">
-            <img id="park" src="images/park.png">
-            <!--loading the lambo object -->
-            <a-asset-item id="lambo_obj" src="3D models/Lambo/Avent.obj"></a-asset-item>
-            <a-asset-item id="lambo_mtl" src="3D models/Lambo/Avent.mtl"></a-asset-item>
+            <img id="sky" src="images/environment/sky.png">
+            <img id="road" src="images/environment/road.jpg">
+            <img id="sideroad" src="images/environment/sideroad.jpg">
+            <img id="grass" src="images/environment/grass.jpg">
+            <img id="cpavement" src="images/environment/cycling_pavement.jpg">
+            <img id="walkway" src="images/environment/walkway.jpg">
+            <img id="segway" src="images/menu/segway.png">
+            <img id="bicycle" src="images/menu/bicycle.png">
+            <img id="barrier" src="images/environment/barrier.png">
+            <img id="hdb" src="images/environment/hdb.png">
+            <img id="hdbg" src="images/environment/hdbg.png">
+            <img id="park" src="images/environment/park.png">
+
+            <!-- All menu images assets -->
+            <img id="chevronup" src="images/menu/chevronup.png">
+
+            <!-- 3D assets -->
+            <a-asset-item id="bicycle_obj" src="models/bicycle/bike.obj"></a-asset-item>
+            <a-asset-item id="redcar_obj" src="models/redcar/model.obj"></a-asset-item>
+            <a-asset-item id="redcar_mtl" src="models/redcar/materials.mtl"></a-asset-item>
+            <a-asset-item id="oldman_obj" src="models/oldman/model.obj"></a-asset-item>
+            <a-asset-item id="oldman_mtl" src="models/oldman/materials.mtl"></a-asset-item>
+            <a-asset-item id="boy_obj" src="models/boy/model.obj"></a-asset-item>
+            <a-asset-item id="boy_mtl" src="models/boy/materials.mtl"></a-asset-item>
+
+
         </a-assets>
+
+
 
         <!-- Sky -->
         <a-sky src="#sky"></a-sky>
@@ -113,52 +125,137 @@
         <!-- Background -->
         <a-box repeat= "10 1" src="#hdbg" position="5 19 -80" rotation="0 0 0" width="1000" height="40" transparent="true"></a-box>
 
-        <!-- Camera + cursor. -->
-        <a-entity camera position="0 1.6 -2.5" look-controls wasd-controls="acceleration: 500" id="camera">
+        <!-- Camera -->
+        <a-entity id="player_bicycle" position="0.25 1.5 -2.5" camera look-controls wasd-controls="acceleration: 500"
+        body="type: static; mass: 5; shape: none;"
+        shape__main="shape: cylinder;
+                     height: 0.36;
+                     radiusTop: 0.24;
+                     radiusBottom: 0.24;"
+        shape__handle="shape: box;
+                       halfExtents: 0.15 0.18 0.04;
+                       offset: 0.4 0 0;">
           <a-entity cursor="fuse: true; fuseTimeout: 1000"
-                    position="0 0 -1"
-                    geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                    material="color: black; shader: flat">
-            <a-animation begin="click" easing="ease-in" attribute="scale"
-                         fill="backwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
-            <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
-                         fill="forwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
-          </a-entity>
-          <a-entity geometry="primitive: plane; height: 0.4; width: 1.2" position="-1.45 0.7 -1" material="color: gray; opacity: 0.5" id="hazardID"></a-entity>
-          <a-entity geometry="primitive: plane; height: 0.4; width: 1.2" position="1.40 0.7 -1" material="color: gray; opacity: 0.5" id="hazardID"></a-entity>
+                               position="0 0 -1"
+                               geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                               material="color: black; shader: flat">
+                               <a-animation begin="click" easing="ease-in" attribute="scale"
+                                    fill="backwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
+                               <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+                                    fill="forwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
+            </a-entity>
+
+            <a-entity geometry="primitive: plane; height: 0.4; width: 1.2" position="-1.45 0.7 -1" material="color: gray; opacity: 0.8">
+                <a-text value="Level 0" position="-0.2 0.05 0" color="#FFF" width="1"></a-text>
+                <a-text value="ViRAC tutorial" position="-0.2 -0.03 0" color="#FFDA03" width="1.5"></a-text>
+            </a-entity>
+
+            <a-obj-model position="0 -3.5 0"  src="#bicycle_obj" scale="0.03 0.03 0.03" rotation="0 90 0"></a-obj-model>
+
+            <!-- Animation-->
+          <a-animation id="path1" begin="path1" attribute="position" from="0.25 1.5 -2.5" to="0.25 1.5 -36.5" dur="10000"></a-animation>
+          <a-animation id="path2" begin="path2" attribute="position" from="0.25 1.5 -36.5" to="0.25 1.5 -56.8" dur="10000"></a-animation>
+          <a-animation id="path3" begin="path3" attribute="position" from="0.25 1.5 -56.8" to="25 1.5 -56.8" dur="10000"></a-animation>
+          <a-animation id="path4" begin="path4" attribute="position" from="25 1.5 -56.8" to="55 1.5 -56.8" dur="10000"></a-animation>
+          <a-animation id="path5" begin="path5" attribute="position" from="55 1.5 -56.8" to="75 1.5 -56.8" dur="10000"></a-animation>
         </a-entity>
+
+        <!-- Path 1 -->
+        <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="2" height="2" position="0.25 -0.1 -10" rotation="-90 0 0" panel-color="#FFDA03">
+            <a-gui-button 
+                width="5" height="5"
+                onclick="path1()"
+                value="_"
+                font-family="Arial"
+                margin="0 0 0.05 0"
+                background-color="#2d2d2d">
+                <a-image src="#chevronup" width="4" height="4" position="0 0 0.25"></a-image>
+            </a-gui-button>
+        </a-gui-flex-container>
+
+        <!-- Path 2 -->
+        <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="2" height="2" position="0.25 -0.1 -42" rotation="-90 0 0" panel-color="#FFDA03">
+            <a-gui-button 
+                width="5" height="5"
+                onclick="path2()"
+                value="_"
+                font-family="Arial"
+                margin="0 0 0.05 0"
+                background-color="#2d2d2d">
+                <a-image src="#chevronup" width="4" height="4" position="0 0 0.25"></a-image>
+            </a-gui-button>
+        </a-gui-flex-container>
+
+        <!-- Path 3 -->
+        <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="2" height="2" position="10 -0.1 -56.8" rotation="-90 -90 0" panel-color="#FFDA03">
+            <a-gui-button 
+                width="5" height="5"
+                onclick="path3()"
+                value="_"
+                font-family="Arial"
+                margin="0 0 0.05 0"
+                background-color="#2d2d2d">
+                <a-image src="#chevronup" width="4" height="4" position="0 0 0.25"></a-image>
+            </a-gui-button>
+        </a-gui-flex-container>
+
+        <!-- Path 4 -->
+        <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="2" height="2" position="30 -0.1 -56.8" rotation="-90 -90 0" panel-color="#FFDA03">
+            <a-gui-button 
+                width="5" height="5"
+                onclick="path4()"
+                value="_"
+                font-family="Arial"
+                margin="0 0 0.05 0"
+                background-color="#2d2d2d">
+                <a-image src="#chevronup" width="4" height="4" position="0 0 0.25"></a-image>
+            </a-gui-button>
+        </a-gui-flex-container>
+
+        <!-- Path 5 -->
+        <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="2" height="2" position="60 -0.1 -56.8" rotation="-90 -90 0" panel-color="#FFDA03">
+            <a-gui-button 
+                width="5" height="5"
+                onclick="path5()"
+                value="_"
+                font-family="Arial"
+                margin="0 0 0.05 0"
+                background-color="#2d2d2d">
+                <a-image src="#chevronup" width="4" height="4" position="0 0 0.25"></a-image>
+            </a-gui-button>
+        </a-gui-flex-container>
         
         <!-- Start menu -->
         <a-entity id="tStart">  
-            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="9" height="4.5" position="0 2.5 -5" rotation="0 0 0" panel-color="#FFDA03">
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="9" height="2" position="0.2 2.8 -6" rotation="0 0 0" panel-color="#FFDA03">
                 <a-gui-label 
-                    width="4" height="1"
+                    width="4" height="2"
                     value="Tutorial"
                     font-family="Impact"
-                    font-size = "350px"
+                    font-size = "200px"
                     margin="0 0 0.0 0"
                     font-color="#000"
                     background-color="#FFDA03">
-                    <a-text value="Use [WASD] to move around" position="-1.2 -0.7 0" color="#FFDA03"></a-text>
-                    <a-text value="Follow the road and complete the tutorial" position="-1.6 -0.9 0" color="#000"></a-text>
+                    <a-text value="Follow the road and complete the tutorial" position="-1.2 -0.5 0" color="#000" width="3"></a-text>
                 </a-gui-label>
             </a-gui-flex-container>
         </a-entity>
+
+        <!-- Look menu -->
         <a-entity id="tLookAround">
-        	<a-gui-flex-container id="tLookTL" flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="9" height="4.5" position="-5 3.35 -45" rotation="0 0 0" panel-color="#FFDA03">
-        		<a-gui-button
+            <a-gui-flex-container id="tLookTLL" flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="9" height="4.5" position="-5 3.65 -45" rotation="0 0 0" panel-color="#FFDA03">
+                <a-gui-button
                         width="2" height="0.75"
-                        onclick="tLookDissapear('tLookTL')"
-                        icon="social-github"
+                        onclick="tLookDissapear('tLookTLL')"
                         value="Look here"
                         font-family="Impact"
-                        background-color="#transparent"
+                        background-color="#FFF"
                         font-color="#000"
                         border-color="#000"
                         hover-color="#DD9E00"
                         border-width="2"> 
                 </a-gui-button>
-        	</a-gui-flex-container>
+            </a-gui-flex-container>
         	<a-gui-flex-container id="tLookTBL" flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="9" height="4.5" position="-5 1.65 -45" rotation="0 0 0" panel-color="#FFDA03">
         		<a-gui-button
                         width="2" height="0.75"
@@ -166,7 +263,7 @@
                         icon="social-github"
                         value="Look here"
                         font-family="Impact"
-                        background-color="#transparent"
+                        background-color="#FFF"
                         font-color="#000"
                         border-color="#000"
                         hover-color="#DD9E00"
@@ -175,14 +272,14 @@
         	</a-gui-flex-container>	
             <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="9" height="4.5" position="0 2.5 -45" rotation="0 0 0" panel-color="#FFDA03">
                 <a-gui-label 
-                    width="8" height="1"
+                    width="8" height="2"
                     value="Looking Around"
                     font-family="Impact"
-                    font-size = "350px"
+                    font-size = "200px"
                     margin="0 0 0.0 0"
                     font-color="#000"
                     background-color="#FFDA03">
-                    <a-text value="Use your mouse to look around" position="-1.2 -0.7 0" color="#FFDA03"></a-text>
+                    <a-text value="By hovering over the white panels" position="-1.2 -0.7 0.5" color="#000" width="4"></a-text>
                 </a-gui-label>
             </a-gui-flex-container>
             <a-gui-flex-container id="tLookTR" flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="9" height="4.5" position="5 3.35 -45" rotation="0 0 0" panel-color="#FFDA03">
@@ -192,7 +289,7 @@
                         icon="social-github"
                         value="Look here"
                         font-family="Impact"
-                        background-color="#transparent"
+                        background-color="#FFF"
                         font-color="#000"
                         border-color="#000"
                         hover-color="#DD9E00"
@@ -206,7 +303,7 @@
                         icon="social-github"
                         value="Look here"
                         font-family="Impact"
-                        background-color="#transparent"
+                        background-color="#FFF"
                         font-color="#000"
                         border-color="#000"
                         hover-color="#DD9E00"
@@ -214,18 +311,20 @@
                 </a-gui-button>
         	</a-gui-flex-container>	
         </a-entity>
+
+        <!-- Vehicle menu -->
         <a-entity id="tDontHitCar">  
-			<a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="9" height="4.5" position="30 2.5 -56" rotation="0 -90 0" panel-color="#FFDA03">
+			<a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="9" height="4.5" position="30 2.8  -56" rotation="0 -90 0" panel-color="#FFDA03">
 	                <a-gui-label 
-	                    width="8" height="1"
+	                    width="8" height="2.5"
 	                    value="Vehicles"
 	                    font-family="Impact"
 	                    justify-content="center"
-	                    font-size = "350px"
+	                    font-size="200px"
 	                    margin="0 0 0.0 0"
 	                    font-color="#000"
 	                    background-color="#FFDA03">
-	                    <a-text value="This is a Lamorghini.. Try not to collide with one.. Your life is at stake!" position="-2.5 -0.7 0" color="#FFDA03"></a-text>
+	                    <a-text value="Do not to collide with any oncoming vehicles.. Your life is at stake!" position="-2.5 -0.7 0" color="#000"></a-text>
 	                </a-gui-label>
 	        </a-gui-flex-container>
 	                     <!-- Lambo -->
@@ -233,36 +332,73 @@
 	          <a-obj-model src="#lambo_obj" mtl="#lambo_mtl" position="30 0 -55" rotation="0 0 0"></a-obj-model>
 	        </a-entity>
         </a-entity>
+
+        <!-- Pedestrian menu -->
         <a-entity id="tDontHitPedestrian">  
 			<a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="9" height="4.5" position="60 2.5 -56" rotation="0 -90 0" panel-color="#FFDA03">
 	                <a-gui-label 
-	                    width="8" height="1"
+	                    width="8" height="2"
 	                    value="Pedestrians"
 	                    font-family="Impact"
 	                    justify-content="center"
-	                    font-size = "350px"
+	                    font-size = "200px"
 	                    margin="0 0 0.0 0"
 	                    font-color="#000"
 	                    background-color="#FFDA03">
-	                    <a-text value="This is a pedestrian.. Try not to collide with one.. Their life is at stake!" position="-2.5 -0.7 0" color="#FFDA03"></a-text>
+	                    <a-text value="This is a pedestrian.. Try not to collide with one.. Their life is at stake!" position="-2.5 -0.7 0" color="#000"></a-text>
 	                </a-gui-label>
 	        </a-gui-flex-container>
 	       <a-entity>
 	          <a-obj-model src="#pedestrian_obj" mtl="#pedestrian_mtl" position="60 0 -55" rotation="0 0 0"></a-obj-model>
 	        </a-entity>
         </a-entity>
+
+        
+        <a-obj-model src="#redcar_obj" mtl="#redcar_mtl" position="28 1 -51" rotation="0 200 0" scale="4 4 4"></a-obj-model>
+        <a-obj-model src="#oldman_obj" mtl="#oldman_mtl" position="60 1 -51" rotation="0 200 0" scale="5 5 5"></a-obj-model>
+        <a-obj-model src="#boy_obj" mtl="#boy_mtl" position="59 1 -51" rotation="0 0 0" scale="5 5 5"></a-obj-model>
+
     </a-scene>
 </body>
 </html>
 
 <script>
 
+    AFRAME.registerComponent("foo", {
+        init: function() {
+          this.el.addEventListener("hitstart", (e) => {
+            console.log('Hello, World!');
+            document.getElementById('parkingmenu').setAttribute('visible','true');
+          })
+        }
+    })
+
+    function path1(){
+        document.getElementById('player_bicycle').emit('path1')  
+    }
+
+    function path2(){
+        document.getElementById('player_bicycle').emit('path2')  
+    }
+
+    function path3(){
+        document.getElementById('player_bicycle').emit('path3')  
+    }
+
+    function path4(){
+        document.getElementById('player_bicycle').emit('path4')  
+    }
+
+    function path5(){
+        document.getElementById('player_bicycle').emit('path5')  
+    }
+
     //Set stage 
     setStage();
 
     //Set the stage of page assets on load
     function setStage(){
-        greenLight();
+        //greenLight();
     }
 
     // Button href links
