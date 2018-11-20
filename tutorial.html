@@ -31,8 +31,8 @@
             <img id="hdbg" src="images/hdbg.png">
             <img id="park" src="images/park.png">
             <!--loading the lambo object -->
-            <a-asset-item id="lambo_obj" src="3D models/Lambo/Avent.obj"></a-asset-item>
-            <a-asset-item id="lambo_mtl" src="3D models/Lambo/Avent.mtl"></a-asset-item>
+            <!-- <a-asset-item id="lambo_obj" src="3D models/Lambo/Avent.obj"></a-asset-item> -->
+            <!-- <a-asset-item id="lambo_mtl" src="3D models/Lambo/Avent.mtl"></a-asset-item> -->
         </a-assets>
 
         <!-- Sky -->
@@ -80,11 +80,12 @@
         <a-box repeat= "5 1" src="#park" position="165.06 5 19" rotation="0 90 0" width="200" height="20" transparent="true"></a-box>
 
         <!-- Finish line -->
-        <a-box position="145 15 10" rotation="0 0 0" width="40" height="10" color="#FFDA03">
-            <a-text width="150" value="Finish" font="monoid" position="19 1 -1" rotation="0 180 0" color="#2B2B2B"></a-text>
+        <a-box position="90 15 -53" rotation="0 90 0" width="40" height="10" color="#FFDA03">
+            <a-text width="150" value="Finish" font="monoid" position="15 1 -1" rotation="0 180 0" color="#2B2B2B" onclick="toMainMenu()"></a-text>
         </a-box>
-        <a-cone position="145 0 10" rotation="0 90 0" width="100" height="40" color="#FFDA03"></a-cone>
-        <a-cone position="162 0 10" rotation="0 90 0" width="100" height="40" color="#FFDA03"></a-cone>
+        
+        <a-cone position="90 0 -45" rotation="0 90 0" width="100" height="40" color="#FFDA03"></a-cone>
+        <a-cone position="90 0 -68" rotation="0 90 0" width="100" height="40" color="#FFDA03"></a-cone>
 
         <!-- Traffic Light -->
         <a-cylinder position="-10 0 -50" rotation="0 90 0" width="10" height="20" color="#ccd4e2" radius="0.5">
@@ -210,12 +211,12 @@
 	                    margin="0 0 0.0 0"
 	                    font-color="#000"
 	                    background-color="#FFDA03">
-	                    <a-text value="This is a pedestrian.. Try not to collide with one.. Your life is at stake!" position="-2.5 -0.7 0" color="#FFDA03"></a-text>
+	                    <a-text value="This is a Lamorghini.. Try not to collide with one.. Your life is at stake!" position="-2.5 -0.7 0" color="#FFDA03"></a-text>
 	                </a-gui-label>
 	        </a-gui-flex-container>
 	                     <!-- Lambo -->
 	       <a-entity>
-	          <a-obj-model src="#lambo_obj" mtl="#lambo_mtl" position="30 0 -55" rotation="0 0 0"></a-obj-model>
+	          <!-- <a-obj-model src="#lambo_obj" mtl="#lambo_mtl" position="30 0 -55" rotation="0 0 0"></a-obj-model> -->
 	        </a-entity>
         </a-entity>
         <a-entity id="tDontHitPedestrian">  
@@ -229,10 +230,9 @@
 	                    margin="0 0 0.0 0"
 	                    font-color="#000"
 	                    background-color="#FFDA03">
-	                    <a-text value="This is a Lamorghini.. Try not to collide with one.. Their life is at stake!" position="-2.5 -0.7 0" color="#FFDA03"></a-text>
+	                    <a-text value="This is a pedestrian.. Try not to collide with one.. Their life is at stake!" position="-2.5 -0.7 0" color="#FFDA03"></a-text>
 	                </a-gui-label>
 	        </a-gui-flex-container>
-	                     <!-- Lambo -->
 	       <a-entity>
 	          <a-obj-model src="#pedestrian_obj" mtl="#pedestrian_mtl" position="60 0 -55" rotation="0 0 0"></a-obj-model>
 	        </a-entity>
@@ -254,6 +254,10 @@
     // Button href links
     function toStageselect(){
         window.location.replace("stageselect.html");
+    }
+
+    function toMainMenu(){
+        window.location.replace("index.html");
     }
 
      function toTutorial(){
