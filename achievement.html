@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Virac</title>
+
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.2.0/dist/aframe-extras.min.js"></script> <!--Extra--->
+    <script src="https://cdn.rawgit.com/zcanter/aframe-gradient-sky/master/dist/gradientsky.min.js"></script> <!--Weather--->
+    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script> <!--GUI--->
+    <script src="https://rawgit.com/atomicguy/aframe-fence-component/master/dist/aframe-fence-component.min.js"></script>
+
+</head>
+
+<body>
+    <a-scene>
+        <a-assets>
+            <!-- All images assets -->
+            <img id="sky" src="images/sky.png">
+            <img id="road" src="images/road.jpg">
+            <img id="sideroad" src="images/sideroad.jpg">
+            <img id="grass" src="images/grass.jpg">
+            <img id="cpavement" src="images/cycling_pavement.jpg">
+            <img id="walkway" src="images/walkway.jpg">
+            <img id="floor" src="images/floor.jpg">
+            <img id="segway" src="images/segway.png">
+            <img id="bicycle" src="images/bicycle.png">
+            <img id="barrier" src="images/barrier.png">
+            <img id="hdb" src="images/hdb.png">
+            <img id="hdbg" src="images/hdbg.png">
+            <img id="park" src="images/park.png">
+            <img id="achievements" src="images/achievement.jpg">
+            <!--loading the lambo object -->
+            <a-asset-item id="lambo_obj" src="3D models/Lambo/Avent.obj"></a-asset-item>
+            <a-asset-item id="lambo_mtl" src="3D models/Lambo/Avent.mtl"></a-asset-item>
+        </a-assets>
+
+        <!-- Sky -->
+        <a-sky src="#sky"></a-sky>
+
+        <!-- Barrier -->
+        <a-box repeat="3 1" src="#barrier" position="0 1 10" rotation="0 0 0" width="15" height="1.5"></a-box>
+
+        <!-- Roads -->
+        <a-plane repeat="1 10" src="#road" position="0 0 -4" rotation="-90 0 0" width="10" height="96" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 10" src="#road" position="50 0 -57" rotation="-90 -90 0" width="10" height="230" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 10" src="#road" position="159.1 0 -4" rotation="-90 0 0" width="10" height="96" color="#7BC8A4" shadow></a-plane>
+
+        <!-- Side Road -->
+        <a-plane repeat="1 50" src="#sideroad" position="5.2 0 -4" rotation="-90 0 0" width="0.6" height="95" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 50" src="#sideroad" position="-5.2 0 -4" rotation="-90 0 0" width="0.6" height="96" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 50" src="#sideroad" position="55 0 -51.8" rotation="-90 90 0" width="0.6" height="190" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 50" src="#sideroad" position="55 0 -62.2" rotation="-90 90 0" width="0.6" height="190" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 50" src="#sideroad" position="153.8 0 48" rotation="-90 0 0" width="0.6" height="200" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 50" src="#sideroad" position="164.2 0 48" rotation="-90 0 0" width="0.6" height="200" color="#7BC8A4" shadow></a-plane>
+
+        <!-- Grass -->
+        <a-plane repeat="1 100" src="#grass" position="7 0 -4" rotation="-90 0 0" width="3" height="95" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 100" src="#grass" position="-7 0 -4" rotation="-90 0 0" width="3" height="96" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 100" src="#grass" position="152 0 -4" rotation="-90 0 0" width="3" height="95" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 100" src="#grass" position="50 0 -70" rotation="-90 -90 0" width="15" height="230" shadow></a-plane>
+
+        <!-- Pavement -->
+        <a-plane repeat="1 100" src="#cpavement" position="11 0 -4" rotation="-90 0 0" width="5" height="85" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 100" src="#cpavement" position="-11 0 -4" rotation="-90 0 0" width="5" height="96" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 100" src="#cpavement" position="79.5 0 -49" rotation="-90 90 0" width="5" height="142" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 100" src="#cpavement" position="148 0 13" rotation="-90 0 0" width="5" height="120" color="#7BC8A4" shadow></a-plane>
+
+        <!-- Walkway -->
+        <a-plane repeat="1 100" src="#walkway" position="16 0 -4" rotation="-90 0 0" width="5" height="85" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 100" src="#walkway" position="-16 0 -4" rotation="-90 0 0" width="5" height="96" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 100" src="#walkway" position="79 0 -44" rotation="-90 90 0" width="5" height="123" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 100" src="#walkway" position="143 0 13.5" rotation="-90 0 0" width="5" height="120" color="#7BC8A4" shadow></a-plane>
+
+        <!-- Building -->
+        <a-box repeat= "3 3" src="#hdb" position="19 30 10" rotation="0 90 0" width="100" height="60"></a-box>
+        <a-box repeat= "3 3" src="#hdb" position="-19 30 -4" rotation="0 90 0" width="120" height="60"></a-box>
+        <a-box repeat= "3 3" src="#hdb" position="78.5 30 -41" rotation="0 0 0" width="120" height="60"></a-box>
+        <a-box repeat= "3 3" src="#hdb" position="140 30 19" rotation="0 90 0" width="120" height="60"></a-box>
+        <a-box repeat= "5 1" src="#park" position="165.06 5 19" rotation="0 90 0" width="200" height="20" transparent="true"></a-box>
+
+        <!-- Finish line -->
+        <a-box position="145 15 10" rotation="0 0 0" width="40" height="10" color="#FFDA03">
+            <a-text width="150" value="Finish" font="monoid" position="19 1 -1" rotation="0 180 0" color="#2B2B2B"></a-text>
+        </a-box>
+        <a-cone position="145 0 10" rotation="0 90 0" width="100" height="40" color="#FFDA03"></a-cone>
+        <a-cone position="162 0 10" rotation="0 90 0" width="100" height="40" color="#FFDA03"></a-cone>
+
+        <!-- Traffic Light -->
+        <a-cylinder position="-10 0 -50" rotation="0 90 0" width="10" height="20" color="#ccd4e2" radius="0.5">
+            <a-box position="0 10 7" rotation="0 90 90" width="3" height="15" color="#303030">
+                <a-circle id="red" position="0 5.5 -1" rotation="0 180 0" width="3" height="7" color="#ff1d00" visible="false"></a-circle>
+                <a-circle id="yellow" position="0 3 -1" rotation="0 180 0" width="3" height="7" color="#ffb200" visible="false"></a-circle>
+                <a-circle id="green" position="0 0.5 -1" rotation="0 180 0" width="3" height="7" color="#13e500" visible="false"></a-circle>
+            </a-box>
+        </a-cylinder>
+
+        <!-- Background -->
+        <a-box repeat= "10 1" src="#hdbg" position="5 19 -80" rotation="0 0 0" width="1000" height="40" transparent="true"></a-box>
+
+        <!-- Lambo -->
+        <a-entity>
+          <a-obj-model src="#lambo_obj" mtl="#lambo_mtl" position="2 0 7" rotation="0 -90 0"></a-obj-model>
+          <a-animation attribute="position" from="2 0 6" to="2 0 -100" repeat="indefinite" dur="10000"></a-animation>
+        </a-entity>
+
+        <!-- Camera + cursor. -->
+        <a-entity camera position="-2 1.6 0.5" look-controls wasd-controls="acceleration: 500" id="camera">
+          <a-entity cursor="fuse: true; fuseTimeout: 1000"
+                    position="0 0 -1"
+                    geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                    material="color: black; shader: flat">
+            <a-animation begin="click" easing="ease-in" attribute="scale"
+                         fill="backwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
+            <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+                         fill="forwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
+          </a-entity>
+          <a-entity geometry="primitive: plane; height: 0.4; width: 1.2" position="-1.45 0.7 -1" material="color: gray; opacity: 0.5" id="hazardID"></a-entity>
+          <a-entity geometry="primitive: plane; height: 0.4; width: 1.2" position="1.40 0.7 -1" material="color: gray; opacity: 0.5" id="hazardID"></a-entity>
+        </a-entity>
+        
+        <!-- Start menu -->
+        <a-entity id="menu">
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="9" height="4.5" position="0 2.5 -5" rotation="0 0 0" panel-color="#FFDA03">
+                <a-gui-label 
+                    width="3" height="1"
+                    value="Virac"
+                    font-family="Impact"
+                    font-size = "350px"
+                    margin="0 0 0.0 0"
+                    font-color="#000"
+                    background-color="#FFDA03">
+                    <a-text value="Virtual Riding and Cycling" position="-1.2 -0.7 0" color="#2B2B2B"></a-text>
+                </a-gui-label>
+                <a-gui-flex-container flex-direction="column" justify-content="center" align-items="normal" opacity="0.2" width="4" height="3" position="0 2.5 -5" rotation="0 0 0" panel-color="#FFDA03">
+                    <a-gui-button
+                        width="2.5" height="0.75"
+                        onclick="toStageselect()"
+                        icon="social-github"
+                        value="Start Game"
+                        font-family="Impact"
+                        background-color="#FFDA03"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2"> 
+                    </a-gui-button>
+                    <a-gui-button
+                        width="2.5" height="0.75"
+                        onclick="toTutorial()"
+                        icon="social-github"
+                        value="Tutorial"
+                        font-family="Impact"
+                        margin="-0.2 0 0.6 1"
+                        background-color="#FFDA03"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2"> 
+                    </a-gui-button>
+                    <a-gui-button
+                        width="2.5" height="0.75"
+                        onclick="toDesignerint()"
+                        icon="social-github"
+                        value="Designer Interface"
+                        font-family="Impact"
+                        background-color="#FFDA03"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2"> 
+                    </a-gui-button>
+                </a-gui-flex-container>
+            </a-gui-flex-container>
+        </a-entity>
+
+
+
+        <a-entity id="achievementPrompt">
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="3" height="1" position="-2.929 2 -16.085" rotation="0 0 0" panel-color="#ff8080">
+                <a-gui-label
+                        width="3" height="1"
+                        value="Show Achievement"
+                        onclick="toShowAchievement()"
+                        font-family="Impact"
+                        font-size = "100px"
+                        margin="0 0 0.0 0"
+                        font-color="#000"
+                        background-color="#ff8080">
+                </a-gui-label>
+            </a-gui-flex-container>
+        </a-entity>
+
+
+        <a-plane id="showAchievement" visible="false" material="transparent: true; visible: false;">
+            <a-image src="#achievements" width="4" height="4" position="-2.929 2.5 -16.085" rotation="0 0 0"></a-image>
+            <a-gui-flex-container opacity="0" flex-direction="column" justify-content="center" align-items="normal" opacity="0" width="1.5" height="3" position="-4 2.3 -16" rotation="0 0 0">
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" onclick="showAchievementAll()">
+                </a-gui-flex-container>
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" onclick="showCycling()">
+                </a-gui-flex-container>
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" onclick="showVigilant()">
+                </a-gui-flex-container>
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" onclick="showReady()">
+                </a-gui-flex-container>
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" onclick="showRideLife()">
+                </a-gui-flex-container>
+            </a-gui-flex-container>
+            <a-gui-flex-container opacity="0" flex-direction="column" justify-content="center" align-items="normal" opacity="1" width="1.5" height="3" position="-2 2.3 -16" rotation="0 0 0" panel-color="red" >
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" visible="true" onclick="showFreshStart()">
+                </a-gui-flex-container>
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" visible="true" onclick="showFirstRide()">
+                </a-gui-flex-container>
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" visible="true" onclick="showReadyUp()">
+                </a-gui-flex-container>
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" visible="true" onclick="showSafeSorry()">
+                </a-gui-flex-container>
+                <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="1.5" height="0.60" rotation="0 0 0" visible="true" onclick="showHighwaySafety()">
+                </a-gui-flex-container>
+            </a-gui-flex-container>
+        </a-plane>
+
+
+        <a-entity id="allAchievements" visible="false">
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="4" height="1" position="-2.929 2 -14.085" rotation="0 0 0" panel-color="#ff80c0">
+                <a-gui-label
+                        width="3" height="0.5"
+                        value="You rode on PCN/Road for the 10th time!"
+                        onclick=""
+                        position="0 -1 0"
+                        font-family="Impact"
+                        font-size = "50px"
+                        margin="0 0 0.0 0"
+                        font-color="#000"
+                        background-color="#ff80c0">
+                </a-gui-label>
+                <a-gui-button
+                        width="0.7" height="0.3"
+                        onclick="closeAllAchievement()"
+                        icon="social-github"
+                        value="Close"
+                        position="-4 1 -14"
+                        font-family="Impact"
+                        font-size="20px"
+                        background-color="#ff8080"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2">
+                </a-gui-button>
+            </a-gui-flex-container>
+        </a-entity>
+		
+		<a-entity id="cycling" visible="false">
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="4" height="1" position="-2.929 2 -14.085" rotation="0 0 0" panel-color="#ff80c0">
+                <a-gui-label
+                        width="3" height="0.5"
+                        value="You rode on the Walkway!"
+                        onclick=""
+                        position="0 -1 0"
+                        font-family="Impact"
+                        font-size = "50px"
+                        margin="0 0 0.0 0"
+                        font-color="#000"
+                        background-color="#ff80c0">
+                </a-gui-label>
+                <a-gui-button
+                        width="0.7" height="0.3"
+                        onclick="closeCycling()"
+                        icon="social-github"
+                        value="Close"
+                        position="-4 1 -14"
+                        font-family="Impact"
+                        font-size="20px"
+                        background-color="#ff8080"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2">
+                </a-gui-button>
+            </a-gui-flex-container>
+        </a-entity>
+
+        <a-entity id="vigilant" visible="false">
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="4" height="1" position="-2.929 2 -14.085" rotation="0 0 0" panel-color="#ff80c0">
+                <a-gui-label
+                        width="3" height="0.5"
+                        value="You parked for the 10th time!"
+                        onclick=""
+                        position="0 -1 0"
+                        font-family="Impact"
+                        font-size = "50px"
+                        margin="0 0 0.0 0"
+                        font-color="#000"
+                        background-color="#ff80c0">
+                </a-gui-label>
+                <a-gui-button
+                        width="0.7" height="0.3"
+                        onclick="closeVigilant()"
+                        icon="social-github"
+                        value="Close"
+                        position="-4 1 -14"
+                        font-family="Impact"
+                        font-size="20px"
+                        background-color="#ff8080"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2">
+                </a-gui-button>
+            </a-gui-flex-container>
+        </a-entity>
+
+        <a-entity id="ready" visible="false">
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="4" height="1" position="-2.929 2 -14.085" rotation="0 0 0" panel-color="#ff80c0">
+                <a-gui-label
+                        width="3" height="0.5"
+                        value="You completed Pre-check for the 10th time!"
+                        onclick=""
+                        position="0 -1 0"
+                        font-family="Impact"
+                        font-size = "50px"
+                        margin="0 0 0.0 0"
+                        font-color="#000"
+                        background-color="#ff80c0">
+                </a-gui-label>
+                <a-gui-button
+                        width="0.7" height="0.3"
+                        onclick="closeReady()"
+                        icon="social-github"
+                        value="Close"
+                        position="-4 1 -14"
+                        font-family="Impact"
+                        font-size="20px"
+                        background-color="#ff8080"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2">
+                </a-gui-button>
+            </a-gui-flex-container>
+        </a-entity>
+
+        <a-entity id="ridelife" visible="false">
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="4" height="1" position="-2.929 2 -14.085" rotation="0 0 0" panel-color="#ff80c0">
+                <a-gui-label
+                        width="3" height="0.5"
+                        value="You rode for the 10th time!"
+                        onclick=""
+                        position="0 -1 0"
+                        font-family="Impact"
+                        font-size = "50px"
+                        margin="0 0 0.0 0"
+                        font-color="#000"
+                        background-color="#ff80c0">
+                </a-gui-label>
+                <a-gui-button
+                        width="0.7" height="0.3"
+                        onclick="closeRideLife()"
+                        icon="social-github"
+                        value="Close"
+                        position="-4 1 -14"
+                        font-family="Impact"
+                        font-size="20px"
+                        background-color="#ff8080"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2">
+                </a-gui-button>
+            </a-gui-flex-container>
+        </a-entity>
+
+        <a-entity id="freshStart" visible="false">
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="4" height="1" position="-2.929 2 -14.085" rotation="0 0 0" panel-color="#ff80c0">
+                <a-gui-label
+                        width="3" height="0.5"
+                        value="You completed the tutorial!"
+                        onclick=""
+                        position="0 -1 0"
+                        font-family="Impact"
+                        font-size = "50px"
+                        margin="0 0 0.0 0"
+                        font-color="#000"
+                        background-color="#ff80c0">
+                </a-gui-label>
+                <a-gui-button
+                        width="0.7" height="0.3"
+                        onclick="closeFreshStart()"
+                        icon="social-github"
+                        value="Close"
+                        position="-4 1 -14"
+                        font-family="Impact"
+                        font-size="20px"
+                        background-color="#ff8080"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2">
+                </a-gui-button>
+            </a-gui-flex-container>
+        </a-entity>
+
+        <a-entity id="firstRide" visible="false">
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="4" height="1" position="-2.929 2 -14.085" rotation="0 0 0" panel-color="#ff80c0">
+                <a-gui-label
+                        width="3" height="0.5"
+                        value="You completed your first ride!"
+                        onclick=""
+                        position="0 -1 0"
+                        font-family="Impact"
+                        font-size = "50px"
+                        margin="0 0 0.0 0"
+                        font-color="#000"
+                        background-color="#ff80c0">
+                </a-gui-label>
+                <a-gui-button
+                        width="0.7" height="0.3"
+                        onclick="closeFirstRide()"
+                        icon="social-github"
+                        value="Close"
+                        position="-4 1 -14"
+                        font-family="Impact"
+                        font-size="20px"
+                        background-color="#ff8080"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2">
+                </a-gui-button>
+            </a-gui-flex-container>
+        </a-entity>
+
+        <a-entity id="readyUp" visible="false">
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="4" height="1" position="-2.929 2 -14.085" rotation="0 0 0" panel-color="#ff80c0">
+                <a-gui-label
+                        width="3" height="0.5"
+                        value="You completed Pre-check for the first time!"
+                        onclick=""
+                        position="0 -1 0"
+                        font-family="Impact"
+                        font-size = "50px"
+                        margin="0 0 0.0 0"
+                        font-color="#000"
+                        background-color="#ff80c0">
+                </a-gui-label>
+                <a-gui-button
+                        width="0.7" height="0.3"
+                        onclick="closeReadyUp()"
+                        icon="social-github"
+                        value="Close"
+                        position="-4 1 -14"
+                        font-family="Impact"
+                        font-size="20px"
+                        background-color="#ff8080"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2">
+                </a-gui-button>
+            </a-gui-flex-container>
+        </a-entity>
+
+        <a-entity id="safeSorry" visible="false">
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="4" height="1" position="-2.929 2 -14.085" rotation="0 0 0" panel-color="#ff80c0">
+                <a-gui-label
+                        width="3" height="0.5"
+                        value="You parked for the first time!"
+                        onclick=""
+                        position="0 -1 0"
+                        font-family="Impact"
+                        font-size = "50px"
+                        margin="0 0 0.0 0"
+                        font-color="#000"
+                        background-color="#ff80c0">
+                </a-gui-label>
+                <a-gui-button
+                        width="0.7" height="0.3"
+                        onclick="closeSafeSorry()"
+                        icon="social-github"
+                        value="Close"
+                        position="-4 1 -14"
+                        font-family="Impact"
+                        font-size="20px"
+                        background-color="#ff8080"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2">
+                </a-gui-button>
+            </a-gui-flex-container>
+        </a-entity>
+
+        <a-entity id="highwaySafety" visible="false">
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="4" height="1" position="-2.929 2 -14.085" rotation="0 0 0" panel-color="#ff80c0">
+                <a-gui-label
+                        width="3" height="0.5"
+                        value="You rode on PCN/Road for the 1st time!"
+                        onclick=""
+                        position="0 -1 0"
+                        font-family="Impact"
+                        font-size = "50px"
+                        margin="0 0 0.0 0"
+                        font-color="#000"
+                        background-color="#ff80c0">
+                </a-gui-label>
+                <a-gui-button
+                        width="0.7" height="0.3"
+                        onclick="closeHighwaySafety()"
+                        icon="social-github"
+                        value="Close"
+                        position="-4 1 -14"
+                        font-family="Impact"
+                        font-size="20px"
+                        background-color="#ff8080"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2">
+                </a-gui-button>
+            </a-gui-flex-container>
+        </a-entity>
+
+    </a-scene>
+</body>
+</html>
+
+<script>
+
+    //Set stage 
+    setStage();
+
+    //Set the stage of page assets on load
+    function setStage(){
+        greenLight();
+    }
+
+    // Button href links
+    function toStageselect(){
+        window.location.replace("stageselect.html");
+    }
+
+     function toTutorial(){
+        window.location.replace("tutorial.html");
+    }
+
+     function toDesignerint(){
+        window.location.replace("designer.html");
+    }
+    function toShowAchievement(){
+        var showAchievement = document.querySelector("#showAchievement");
+        showAchievement.setAttribute("visible",true);
+        var disableButton = document.querySelector("#achievementPrompt");
+        disableButton.setAttribute("visible",false);
+    }
+
+    function showAchievementAll(){
+        var allAchievement = document.querySelector("#allAchievements");
+        allAchievement.setAttribute("visible",true);
+    }
+
+    function closeAllAchievement(){
+        var allAchievement = document.querySelector("#allAchievements");
+        allAchievement.setAttribute("visible",false);
+    }
+	
+	function showCycling(){
+        var item = document.querySelector("#cycling");
+        item.setAttribute("visible",true);
+    }
+
+    function showRideLife(){
+        var item = document.querySelector("#ridelife");
+        item.setAttribute("visible",true);
+    }
+
+    function showVigilant(){
+        var item = document.querySelector("#vigilant");
+        item.setAttribute("visible",true);
+    }
+
+    function showReady(){
+        var item = document.querySelector("#ready");
+        item.setAttribute("visible",true);
+    }
+
+    function showFreshStart(){
+        var item = document.querySelector("#freshStart");
+        item.setAttribute("visible",true);
+    }
+
+    function showFirstRide(){
+        var item = document.querySelector("#firstRide");
+        item.setAttribute("visible",true);
+    }
+
+    function showReadyUp(){
+        var item = document.querySelector("#readyUp");
+        item.setAttribute("visible",true);
+    }
+
+    function showSafeSorry(){
+        var item = document.querySelector("#safeSorry");
+        item.setAttribute("visible",true);
+    }
+
+    function showReadyUp(){
+        var item = document.querySelector("#readyUp");
+        item.setAttribute("visible",true);
+    }
+
+    function showHighwaySafety(){
+        var item = document.querySelector("#highwaySafety");
+        item.setAttribute("visible",true);
+    }
+
+    function closeHighwaySafety(){
+        var item = document.querySelector("#highwaySafety");
+        item.setAttribute("visible",false);
+    }
+
+    function closeSafeSorry(){
+        var item = document.querySelector("#safeSorry");
+        item.setAttribute("visible",false);
+    }
+    function closeReadyUp(){
+        var item = document.querySelector("#readyUp");
+        item.setAttribute("visible",false);
+    }
+
+    function closeFirstRide(){
+        var item = document.querySelector("#firstRide");
+        item.setAttribute("visible",false);
+    }
+    function closeFreshStart(){
+        var item = document.querySelector("#freshStart");
+        item.setAttribute("visible",false);
+    }
+
+    function closeCycling(){
+        var allAchievement = document.querySelector("#cycling");
+        allAchievement.setAttribute("visible",false);
+    }
+
+    function closeVigilant(){
+        var item = document.querySelector("#vigilant");
+        item.setAttribute("visible",false);
+    }
+
+    function closeReady(){
+        var item = document.querySelector("#ready");
+        item.setAttribute("visible",false);
+    }
+
+    function closeRideLife(){
+        var item = document.querySelector("#ridelife");
+        allAchievement.setAttribute("visible",false);
+    }
+  
+	
+    function greenLight() {
+        setTimeout(function(){
+            document.getElementById('red').setAttribute('visible', 'false');
+            document.getElementById('yellow').setAttribute('visible', 'false');
+            document.getElementById('green').setAttribute('visible', 'true');
+            console.log('Green Light activated');
+            yellowLight();  
+        }, 12000);   
+    }
+
+    function yellowLight() {
+        setTimeout(function(){
+            document.getElementById('red').setAttribute('visible', 'false');
+            document.getElementById('yellow').setAttribute('visible', 'true');
+            document.getElementById('green').setAttribute('visible', 'false');
+            console.log('Yellow Light activated');
+            redLight();
+        }, 8000);    
+    }
+
+    function redLight() {
+        setTimeout(function(){
+            document.getElementById('red').setAttribute('visible', 'true');
+            document.getElementById('yellow').setAttribute('visible', 'false');
+            document.getElementById('green').setAttribute('visible', 'false');
+            console.log('Red Light activated');
+            greenLight()
+        }, 2000);
+    }
+
+
+</script>
