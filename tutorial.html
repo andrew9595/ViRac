@@ -31,8 +31,8 @@
             <img id="hdbg" src="images/hdbg.png">
             <img id="park" src="images/park.png">
             <!--loading the lambo object -->
-            <!-- <a-asset-item id="lambo_obj" src="3D models/Lambo/Avent.obj"></a-asset-item> -->
-            <!-- <a-asset-item id="lambo_mtl" src="3D models/Lambo/Avent.mtl"></a-asset-item> -->
+            <a-asset-item id="lambo_obj" src="3D models/Lambo/Avent.obj"></a-asset-item>
+            <a-asset-item id="lambo_mtl" src="3D models/Lambo/Avent.mtl"></a-asset-item>
         </a-assets>
 
         <!-- Sky -->
@@ -83,7 +83,20 @@
         <a-box position="90 15 -53" rotation="0 90 0" width="40" height="10" color="#FFDA03">
             <a-text width="150" value="Finish" font="monoid" position="15 1 -1" rotation="0 180 0" color="#2B2B2B"></a-text>
         </a-box>
-        
+        <a-gui-flex-container id="tLookTL" flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="9" height="4.5" position="90 5 -56" rotation="0 270 0" panel-color="#FFDA03">
+                <a-gui-button
+                        width="11" height="8"
+                        onclick="toMainMenu()"
+                        icon="social-github"
+                        value="Back to Main Menu"
+                        font-family="Impact"
+                        background-color="#FFDA03"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2"> 
+                </a-gui-button>
+            </a-gui-flex-container>
         <a-cone position="90 0 -45" rotation="0 90 0" width="100" height="40" color="#FFDA03"></a-cone>
         <a-cone position="90 0 -68" rotation="0 90 0" width="100" height="40" color="#FFDA03"></a-cone>
 
