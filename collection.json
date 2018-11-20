@@ -1,0 +1,5 @@
+{
+  pedestrians: 20,
+  vehicles: 9,
+  environment: "rain"
+}
