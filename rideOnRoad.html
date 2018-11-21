@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Ride On Road</title>
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.2.0/dist/aframe-extras.min.js"></script> <!--Extra--->
+    <script src="https://cdn.rawgit.com/zcanter/aframe-gradient-sky/master/dist/gradientsky.min.js"></script> <!--Weather--->
+    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script> <!--GUI--->
+    <script src="https://rawgit.com/atomicguy/aframe-fence-component/master/dist/aframe-fence-component.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.2.0/dist/aframe-physics-system.min.js"></script><!---physis--->
+    <script src="https://unpkg.com/aframe-aabb-collider-component@^2.2.1/dist/aframe-aabb-collider-component.min.js"></script>
+    <script src="js/aframe-tooltip-component.js"></script>
+    <script src="js/camera-position.js"></script>
+    <script src="js/ground.js"></script>
+    <script src="js/link-controls.js"></script>
+    <script src="shaders/skyGradient.js"></script>
+  </head>
+  <body>
+    <a-scene raycaster="far: 100; objects: [link];" cursor="rayOrigin: mouse" camera-position physics="debug:true; friction:0.1">
+      <a-assets>
+
+        <!-- All environment images assets -->
+        <img id="sky" src="images/environment/sky.png">
+        <img id="road" src="images/environment/road.jpg">
+        <img id="sideroad" src="images/environment/sideroad.jpg">
+        <img id="grass" src="images/environment/grass.jpg">
+        <img id="cpavement" src="images/environment/cycling_pavement.jpg">
+        <img id="walkway" src="images/environment/walkway.jpg">
+        <img id="segway" src="images/menu/segway.png">
+        <img id="bicycle" src="images/menu/bicycle.png">
+        <img id="barrier" src="images/environment/barrier.png">
+        <img id="hdb" src="images/environment/hdb.png">
+        <img id="hdbg" src="images/environment/hdbg.png">
+        <img id="park" src="images/environment/park.png">
+
+        <!-- All menu images assets -->
+        <img id="chevronup" src="images/menu/chevronup.png">
+        <img id="parking" src="images/menu/parking.png">
+        <img id="lift" src="images/menu/lift.png">
+        <img id="zebra" src="images/environment/zebra.png">
+        <img id="thumbCity" crossOrigin="anonymous" src="https://cdn.aframe.io/link-traversal/thumbs/city.png">
+        <img id="thumbSunrise" crossOrigin="anonymous" src="https://cdn.aframe.io/link-traversal/thumbs/sunrise.png">
+        <img id="thumbMountains" crossOrigin="anonymous" src="https://cdn.aframe.io/link-traversal/thumbs/mountains.png">
+        <a-asset-item id="person_obj" src="models/pedestrian/model.obj"></a-asset-item>
+        <a-asset-item id="person_mtl" src="models/pedestrian/materials.mtl"></a-asset-item>
+        <a-asset-item id="car_obj" src="models/redcar/model.obj"></a-asset-item>
+        <a-asset-item id="car_mtl" src="models/redcar/materials.mtl"></a-asset-item>
+        <a-asset-item id="van_obj" src="models/van/van.obj"></a-asset-item>
+        <a-asset-item id="van_mtl" src="models/van/van.mtl"></a-asset-item>
+        <a-asset-item id="bicycle_obj" src="models/Bicycle/bicycle.obj"></a-asset-item>
+        <a-asset-item id="bicycle_mtl" src="models/Bicycle/bicycle1.mtl"></a-asset-item>
+        <a-asset-item id="scooter_obj" src="models/Scooter/Trotinette.obj"></a-asset-item>
+        <a-asset-item id="scooter_mtl" src="models/Scooter/Trotinette.mtl"></a-asset-item>
+      </a-assets>
+
+      <!-- Envrionments -->
+      <!-- Sky -->
+
+              <!-- Sky -->
+              <a-sky src="#sky"></a-sky>
+
+              <!-- Barrier -->
+              <a-box repeat="3 1" src="#barrier" position="0 1 10" rotation="0 0 0" width="15" height="1.5"></a-box>
+
+              <!-- Roads -->
+              <a-plane repeat="1 10" src="#road" position="0 0 -4" rotation="-90 0 0" width="10" height="96" color="#7BC8A4" shadow></a-plane>
+              <a-plane repeat="1 10" src="#road" position="50 0 -57" rotation="-90 -90 0" width="10" height="230" color="#7BC8A4" shadow></a-plane>
+              <a-plane repeat="1 10" src="#road" position="159.1 0 -4" rotation="-90 0 0" width="10" height="96" color="#7BC8A4" shadow></a-plane>
+              <a-plane src="#zebra" position="-13.108 0.165 -57" width="10" height="10" rotation="-90 0 0"></a-plane>
+              <a-plane src="#zebra" position="-0.093 0.165 -46.8" width="10" height="10" rotation="-90 0 90"></a-plane>
+              <!-- Side Road -->
+              <a-plane repeat="1 50" src="#sideroad" position="5.2 0 -4" rotation="-90 0 0" width="0.6" height="95" color="#7BC8A4" shadow></a-plane>
+              <a-plane repeat="1 50" src="#sideroad" position="-5.2 0 -4" rotation="-90 0 0" width="0.6" height="96" color="#7BC8A4" shadow></a-plane>
+              <a-plane repeat="1 50" src="#sideroad" position="55 0 -51.8" rotation="-90 90 0" width="0.6" height="190" color="#7BC8A4" shadow></a-plane>
+              <a-plane repeat="1 50" src="#sideroad" position="55 0 -62.2" rotation="-90 90 0" width="0.6" height="190" color="#7BC8A4" shadow></a-plane>
+              <a-plane repeat="1 50" src="#sideroad" position="153.8 0 48" rotation="-90 0 0" width="0.6" height="200" color="#7BC8A4" shadow></a-plane>
+              <a-plane repeat="1 50" src="#sideroad" position="164.2 0 48" rotation="-90 0 0" width="0.6" height="200" color="#7BC8A4" shadow></a-plane>
+
+              <!-- Grass -->
+              <a-plane repeat="1 100" src="#grass" position="7 0 -4" rotation="-90 0 0" width="3" height="95" color="#7BC8A4" shadow></a-plane>
+              <a-plane repeat="1 100" src="#grass" position="-7 0 -4" rotation="-90 0 0" width="3" height="96" color="#7BC8A4" shadow></a-plane>
+              <a-plane repeat="1 100" src="#grass" position="152 0 -4" rotation="-90 0 0" width="3" height="95" color="#7BC8A4" shadow></a-plane>
+              <a-plane repeat="1 100" src="#grass" position="50 0 -70" rotation="-90 -90 0" width="15" height="230" shadow></a-plane>
+
+              <!-- Pavement -->
+              <a-plane repeat="1 100" src="#cpavement" position="11 0 -4" rotation="-90 0 0" width="5" height="85" color="#7BC8A4" shadow></a-plane>
+              <a-plane repeat="1 100" src="#cpavement" position="-11 0 -4" rotation="-90 0 0" width="5" height="96" color="#7BC8A4" shadow></a-plane>
+              <a-plane repeat="1 100" src="#cpavement" position="79.5 0 -49" rotation="-90 90 0" width="5" height="142" color="#7BC8A4" shadow></a-plane>
+              <a-plane repeat="1 100" src="#cpavement" position="148 0 13" rotation="-90 0 0" width="5" height="120" color="#7BC8A4" shadow></a-plane>
+
+              <!-- Walkway -->
+              <a-plane repeat="1 100" src="#walkway" position="16 0 -4" rotation="-90 0 0" width="5" height="85" color="#7BC8A4" shadow></a-plane>
+              <a-plane repeat="1 100" src="#walkway" position="-16 0 -4" rotation="-90 0 0" width="5" height="96" color="#7BC8A4" shadow></a-plane>
+              <a-plane repeat="1 100" src="#walkway" position="79 0 -44" rotation="-90 90 0" width="5" height="123" color="#7BC8A4" shadow></a-plane>
+              <a-plane repeat="1 100" src="#walkway" position="143 0 13.5" rotation="-90 0 0" width="5" height="120" color="#7BC8A4" shadow></a-plane>
+
+              <!-- Building -->
+              <a-box repeat= "3 3" src="#hdb" position="19 30 10" rotation="0 90 0" width="100" height="60"></a-box>
+              <a-box repeat= "3 3" src="#hdb" position="-19 30 -4" rotation="0 90 0" width="120" height="60"></a-box>
+              <a-box repeat= "3 3" src="#hdb" position="78.5 30 -41" rotation="0 0 0" width="120" height="60"></a-box>
+              <a-box repeat= "3 3" src="#hdb" position="140 30 19" rotation="0 90 0" width="120" height="60"></a-box>
+              <a-box repeat= "5 1" src="#park" position="165.06 5 19" rotation="0 90 0" width="200" height="20" transparent="true"></a-box>
+
+              <!-- Finish line -->
+              <a-box position="145 15 10" rotation="0 0 0" width="40" height="10" color="#FFDA03">
+                  <a-text width="150" value="Finish" font="monoid" position="19 1 -1" rotation="0 180 0" color="#2B2B2B"></a-text>
+              </a-box>
+              <a-cone position="145 0 10" rotation="0 90 0" width="100" height="40" color="#FFDA03"></a-cone>
+              <a-cone position="162 0 10" rotation="0 90 0" width="100" height="40" color="#FFDA03"></a-cone>
+
+              <!-- Traffic Light -->
+              <a-cylinder position="-10 0 -50" rotation="0 90 0" width="10" height="20" color="#ccd4e2" radius="0.5">
+                  <a-box position="0 10 7" rotation="0 90 90" width="3" height="15" color="#303030">
+                      <a-circle id="red" position="0 5.5 -1" rotation="0 180 0" width="3" height="7" color="#ff1d00" visible="false"></a-circle>
+                      <a-circle id="yellow" position="0 3 -1" rotation="0 180 0" width="3" height="7" color="#ffb200" visible="false"></a-circle>
+                      <a-circle id="green" position="0 0.5 -1" rotation="0 180 0" width="3" height="7" color="#13e500" visible="false"></a-circle>
+                  </a-box>
+              </a-cylinder>
+
+              <!-- Background -->
+              <a-box repeat= "10 1" src="#hdbg" position="5 19 -80" rotation="0 0 0" width="1000" height="40" transparent="true"></a-box>
+
+      <a-entity id="menu">
+          <a-text value="Select Mode" font="monoid" position="-0.4 1.4 -4.25" color="#2B2B2B"></a-text>
+          <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" component-padding="1" opacity="1" width="9" height="4.5" position="0 6 -10" rotation="0 0 0" panel-color="#FFDA03">
+              <a-gui-button
+                  onclick="loadBicycle()"
+                  width="4" height="4.5"
+                  value="i"
+                  font-family="Impact"
+                  background-color="#FFDA03"
+                  margin="0 1 0 0"
+                  font-color="#000"
+                  border-color="#000"
+                  hover-color="#DD9E00"
+                  border-width="2">
+                  <a-image src="#bicycle" width="2" height="2" position="0.2 0 0.25"></a-image>
+                  <a-text value="Cyclist" font="monoid" position="-0.4 1.4 0.25" color="#2B2B2B"></a-text>
+              </a-gui-button>
+              <a-gui-button
+                  onclick="loadPMD()"
+                  width="4" height="4.5"
+                  icon="social-github"
+                  value="Start Game"
+                  font-family="Impact"
+                  background-color="#FFDA03"
+                  font-color="#000"
+                  border-color="#000"
+                  hover-color="#DD9E00"
+                  border-width="2">
+                  <a-image src="#segway" width="2" height="2" position="-0.3 0 0.25"></a-image>
+                  <a-text value="PMD User" font="monoid" position="-0.4 1.4 0.25" color="#2B2B2B"></a-text>
+              </a-gui-button>
+          </a-gui-flex-container>
+      </a-entity>
+
+      <a-box position="-2.45 1 -40" opacity="0" width="5" height="5" scale="1 1 5" rotation="0 0 0"></a-box>
+
+      <a-entity id="menu2" visible="false">
+          <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" component-padding="1" opacity="1" width="9" height="4.5" position="0 5 -50" rotation="0 0 0" panel-color="#FFDA03">
+              <a-gui-button
+                  position="0 -1 0"
+                  onclick="loadBicycle()"
+                  width="4" height="1"
+                  value="Yes"
+                  font-family="Impact"
+                  background-color="#FFDA03"
+                  font-color="#000"
+                  border-color="#000"
+                  hover-color="#DD9E00"
+                  border-width="2">
+              </a-gui-button>
+              <a-gui-button
+                  onclick="loadPMD()"
+                  width="4" height="1"
+                  icon="social-github"
+                  value="No"
+                  font-family="Impact"
+                  background-color="#FFDA03"
+                  font-color="#000"
+                  border-color="#000"
+                  hover-color="#DD9E00"
+                  border-width="2">
+              </a-gui-button>
+          </a-gui-flex-container>
+      </a-entity>
+
+      <!---normal player--->
+      <!-- <a-entity id="player" position="0 2 -2" camera look-controls  wasd-controls="acceleration:50">
+        <a-entity cursor="fuse: true; fuseTimeout: 3000"
+                position="0 0 -1"
+                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                material="color: black; shader: flat">
+                <a-animation begin="click" easing="ease-in" attribute="scale"
+                     fill="backwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
+                <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+                     fill="forwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
+        </a-entity>
+      </a-entity> -->
+      <a-entity id="player" position="-4 2 -2" camera look-controls wasd-controls="acceleration:200"
+        foo geometry="primitive: box">
+        <a-entity id="p_cursor" cursor="fuse: true; fuseTimeout: 1000"
+                  position="0 0 -1"
+                  geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                  material="color: black; shader: flat">
+                  <a-animation begin="click" easing="ease-in" attribute="scale"
+                      fill="backwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
+                  <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+                      fill="forwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
+          </a-entity>
+          <!-- HUD-->
+          <a-entity geometry="primitive: plane; height: 0.4; width: 1.2" position="-1.45 0.7 -1" material="color: gray; opacity: 0.8" id="hazardID">
+              <a-text value="Level 3" position="-0.2 0.05 0" color="#FFF" width="1"></a-text>
+              <a-text value="Ride on road" position="-0.2 -0.03 0" color="#FFDA03" width="1.5"></a-text>
+          </a-entity>
+
+      </a-entity>
+      <!--player on bicycle -->
+      <a-entity id="player_bicycle" position="-4 2 -2" camera look-controls wasd-controls="acceleration:200"
+          body="type: static; mass: 5; shape: none;" aabb-collider="objects:a-box" foo geometry="primitive: box">
+          <a-entity id="b_cursor" cursor="fuse: true; fuseTimeout: 1000"
+                    position="0 0 -1"
+                    geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                    material="color: black; shader: flat">
+                    <a-animation begin="click" easing="ease-in" attribute="scale"
+                        fill="backwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
+                    <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+                        fill="forwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
+            </a-entity>
+          <!-- Animation-->
+          <a-animation id="path1" begin="path1" attribute="position" from="-4 2 -2" to="-4.2 2 -40" dur="10000"></a-animation>
+          <a-animation id="path2" begin="path2" attribute="position" from="-4.2 2 -40" to="-3 2 -61" dur="10000"></a-animation>
+        <!-- Bicycle-->
+        <a-obj-model position="0 -2 0"  src="#bicycle_obj" mtl="#bicycle_mtl" scale="0.1 0.1 0.1" rotation="0 -180 0"></a-obj-model>
+      </a-entity>
+
+      <a-entity id="player_scooter" position="-4 2 -2" camera look-controls wasd-controls="acceleration:200"
+        body="type: static; mass: 5; shape: none;" aabb-collider="objects:a-plane" foo geometry="primitive: plane">
+        <a-entity id="s_cursor" cursor="fuse: true; fuseTimeout: 1000"
+                  position="0 0 -1"
+                  geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                  material="color: black; shader: flat">
+                  <a-animation begin="click" easing="ease-in" attribute="scale"
+                      fill="backwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
+                  <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+                      fill="forwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
+          </a-entity>
+
+        <a-animation id="path1" begin="path1" attribute="position" from="-4 2 -2" to="-4.2 2 -40" dur="10000"></a-animation>
+        <a-animation id="path2" begin="path2" attribute="position" from="-4 2 -40" to="-3 2 -61" dur="10000"></a-animation>
+        <a-obj-model position="0 -2 0"  src="#scooter_obj" mtl="#scooter_mtl" scale="0.35 0.35 0.35" rotation="0 0 0"></a-obj-model>
+      </a-entity>
+
+      <!-- <a-entity id="car">
+        <a-obj-model src="#car_obj" mtl="#car_mtl" position="1.5 0 4" scale="4 4 4" rotation="0 180 0"></a-obj-model>
+        <a-animation attribute="position" from="1.5 0 4" to="2 0 -65" repeat="indefinite" dur="10000"></a-animation>
+      </a-entity> -->
+      <a-obj-model src="#person_obj" mtl="#person_mtl" position="6.7 2 -45" scale="3 3 3" rotation="0 90 0"></a-obj-model>
+
+
+      <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="2" height="2" position="-2.4 -0.1 -11.370" rotation="-90 0 0" panel-color="#FFDA03">
+          <a-gui-button
+              width="5" height="5"
+              onclick="path1()"
+              value="_"
+              font-family="Arial"
+              margin="0 0 0.05 0"
+              background-color="#2d2d2d">
+              <a-image src="#chevronup" width="4" height="4" position="0 0 0.25"></a-image>
+          </a-gui-button>
+      </a-gui-flex-container>
+
+      <!-- Path 2 -->
+        <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="2" height="2" position="-3 -0.1 -59" rotation="-90 0 0" panel-color="#FFDA03">
+            <a-gui-button
+                width="5" height="5"
+                onclick="path2()"
+                value="_"
+                font-family="Arial"
+                margin="0 0 0.05 0"
+                background-color="#2d2d2d">
+                <a-image src="#chevronup" width="4" height="4" position="0 0 0.25"></a-image>
+            </a-gui-button>
+        </a-gui-flex-container>
+
+      <a-link href="Perform Precheck" position="152.5 1.5 -1.0" image="#thumbCity"></a-link>
+      <a-link href="selectLevel.html" position="155 1.5 -1.0" image="#thumbSunrise"></a-link>
+      <a-link href="Ride on PCN" position="157 1.5 -1.0" image="#thumbMountains"></a-link>
+      <a-link href="Ride on Walkway" position="159.5 1.5 -1.0" image="#thumbMountains"></a-link>
+      <a-link href="Parking" position="162 1.5 -1.0" image="#thumbMountains"></a-link>
+
+
+
+    </a-scene>
+  </body>
+</html>
+<script>
+  loadPlayer()
+  AFRAME.registerComponent("foo", {
+        init: function() {
+          this.el.addEventListener("hitstart", (e) => {
+            console.log('Hit!');
+            document.getElementById('menu2').setAttribute('visible','true');
+
+          })
+        }
+    })
+  function loadPlayer(){
+    document.getElementById('player').setAttribute('visible', 'true');
+    document.getElementById('player_bicycle').setAttribute('visible', 'false');
+    document.getElementById('player_scooter').setAttribute('visible', 'false');
+  }
+  function loadBicycle(){
+    document.getElementById('p_cursor').setAttribute('visible', 'false');
+    document.getElementById('s_cursor').setAttribute('visible', 'false');
+    document.getElementById('player').setAttribute('visible', 'false');
+    document.getElementById('player_bicycle').setAttribute('visible', 'true');
+    document.getElementById('player_scooter').setAttribute('visible', 'false');
+    document.getElementById('menu').setAttribute('visible', 'false');
+  }
+
+  function loadPMD(){
+    document.getElementById('p_cursor').setAttribute('visible', 'false');
+    document.getElementById('b_cursor').setAttribute('visible', 'false');
+    document.getElementById('player').setAttribute('visible', 'false');
+    document.getElementById('player_bicycle').setAttribute('visible', 'false');
+    document.getElementById('player_scooter').setAttribute('visible', 'true');
+    document.getElementById('menu').setAttribute('visible', 'false');
+  }
+  function path1(){
+      document.getElementById('p_cursor').setAttribute('visible', 'false');
+      document.getElementById('player_bicycle').emit('path1')
+      document.getElementById('player_scooter').emit('path1')
+  }
+
+  function path2(){
+      document.getElementById('player_bicycle').emit('path2')
+      document.getElementById('player_scooter').emit('path2')
+  }
+
+</script>
