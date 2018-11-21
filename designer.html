@@ -5,7 +5,28 @@
     <meta name="viewport" content="width=device-width">
     <title>Virac</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/engine.js"></script>
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script>
+
+        $.getJSON( "environment.json", function( data ) {
+            //Loading the pedestrian variable
+            AFRAME.registerComponent('pedestrians', {
+                init:function(){
+                    this.el.setAttribute('value', data['pedestrians']);
+                }
+            });
+
+            //Loading the pedestrians variable
+            AFRAME.registerComponent('vehicles', {
+                init:function(){
+                    this.el.setAttribute('value', data['vehicles']);
+                }
+            });
+        });
+    </script>
+    
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.2.0/dist/aframe-extras.min.js"></script> <!--Extra--->
     <script src="https://cdn.rawgit.com/zcanter/aframe-gradient-sky/master/dist/gradientsky.min.js"></script> <!--Weather--->
     <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script> <!--GUI--->
@@ -23,7 +44,6 @@
             <img id="grass" src="images/environment/grass.jpg">
             <img id="cpavement" src="images/environment/cycling_pavement.jpg">
             <img id="walkway" src="images/environment/walkway.jpg">
-            <img id="floor" src="images/environment/floor.jpg">
             <img id="segway" src="images/menu/segway.png">
             <img id="bicycle" src="images/menu/bicycle.png">
             <img id="barrier" src="images/environment/barrier.png">
@@ -98,14 +118,8 @@
         <!-- Background -->
         <a-box repeat= "10 1" src="#hdbg" position="5 19 -80" rotation="0 0 0" width="1000" height="40" transparent="true"></a-box>
 
-        <!-- Lambo -->
-        <a-entity>
-          <a-obj-model src="#lambo_obj" mtl="#lambo_mtl" position="2 0 7" rotation="0 -90 0"></a-obj-model>
-          <a-animation attribute="position" from="2 0 6" to="2 0 -100" repeat="indefinite" dur="10000"></a-animation>
-        </a-entity>
-
         <!-- Camera + cursor. -->
-        <a-entity camera position="0 1.6 0.5" look-controls wasd-controls="acceleration: 500" id="camera">
+        <a-entity camera position="-0.8 1.6 0.5" look-controls wasd-controls="acceleration: 500" id="camera">
           <a-entity cursor="fuse: true; fuseTimeout: 1000"
                     position="0 0 -1"
                     geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
@@ -152,8 +166,10 @@
                         border-width="2"> 
                     </a-gui-button>
                     <a-gui-label
+                        pedestrians
                         id="pedestriansVal" 
                         width="1" height="0.75"
+                        value= "."
                         font-family="Impact"
                         font-size = "200px"
                         font-color="#000"
@@ -196,9 +212,11 @@
                         border-width="2"> 
                     </a-gui-button>
                     <a-gui-label 
+                        vehicles
                         id="vehiclesVal" 
                         width="1" height="0.75"
                         font-family="Impact"
+                        value= "."
                         font-size = "200px"
                         font-color="#000"
                         margin="0 0 0 0"
@@ -232,11 +250,11 @@
                     <a-gui-button
                         id="sunBtn"
                         width="1.5" height="0.75"
-                        onclick="setSun()"
+                        onclick="setSky();"
                         value="_"
                         font-family="Impact"
-                        background-color="#FFDA03"
                         font-color="#000"
+                        background-color="#FFDA03"
                         border-color="#000"
                         hover-color="#DD9E00"
                         border-width="2"> 
@@ -258,7 +276,7 @@
                     <a-gui-button
                         id="moonBtn"
                         width="1.5" height="0.75"
-                        onclick="setMoon()"
+                        onclick="setNight()"
                         icon="social-github"
                         value="_"
                         font-family="Impact"
@@ -267,7 +285,7 @@
                         border-color="#000"
                         hover-color="#DD9E00"
                         border-width="2">
-                        <a-image src="#moon" width="0.5" height="0.5" position="0 0 0.25"></a-image>  
+                        <a-image src="#moon" width="0.5" height="0.5" position="-0.2 0 0.25"></a-image>  
                     </a-gui-button>
                 </a-gui-flex-container>
                 <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0.8" width="9" height="1" position="5 5.5 -5" rotation="0 0 0" panel-color="#FFDA03">
@@ -285,7 +303,7 @@
                     </a-gui-button>
                     <a-gui-button
                         width="3.5" height="0.75"
-                        onclick="toHome()"
+                        onclick="toSave()"
                         value="Save"
                         font-family="Impact"
                         background-color="#FFDA03"
@@ -311,46 +329,35 @@
     var rainBtn = document.getElementById('rainBtn');
     var moonBtn = document.getElementById('moonBtn');
 
-    var pedestriansCount = 1;
-    var vehiclesCount = 1;
-
-    document.getElementById('pedestriansVal').setAttribute('value',''+pedestriansCount+'');
-    document.getElementById('vehiclesVal').setAttribute('value',''+vehiclesCount+'');
-
-    //Set stage 
-    setStage();
-
-    //Set the stage of page assets on load
-    function setStage(){
-        setSun();
-    }
+    var pedestriansCount = document.getElementById('pedestriansVal').getAttribute('value');
+    var vehiclesCount = document.getElementById('vehiclesVal').getAttribute('value');
+    var weather = "sky";
 
     function setSun(){
-        sunBtn.setAttribute('background-color','#F98918');
-        rainBtn.setAttribute('background-color','#FFDA03');
-        moonBtn.setAttribute('background-color','#FFDA03');
+        weather = "sky";
     }
 
-    // function setRain(){
-    //     rainBtn.setAttribute('background-color','#F98918');
-    //     sunBtn.setAttribute('background-color','#FFDA03');
-    //     moonBtn.setAttribute('background-color','#FFDA03');
-    // }
+    function setRain(){
+        weather = "rain";
+    }
 
-    // function setMoon(){
-    //     moonBtn.setAttribute('background-color','#F98918');
-    //     sunBtn.setAttribute('background-color','#FFDA03');
-    //     rainBtn.setAttribute('background-color','#FFDA03');
-    // }
+    function setNight(){
+        weather = "night";
+    }
 
     function addPedestrians(){
-        pedestriansCount++;
-        console.log(pedestriansCount);
+        if (pedestriansCount <10){
+            pedestriansCount++;
+            console.log(pedestriansCount);
+        }
     };
 
     function addVehicles(){
-        vehiclesCount++;
-        console.log(vehiclesCount);
+        if (vehiclesCount <10){
+            vehiclesCount++;
+            console.log(vehiclesCount);
+        }
+        
     };
 
     function subtractPedestrians(){
@@ -383,6 +390,14 @@
     // Button href links
     function toHome(){
         window.location.replace("index.html");
+    }
+
+    // Save to JSON file
+    function toSave(){
+        setPedestrians(pedestriansCount);
+        setVehicles(vehiclesCount);
+        setWeather(weather);
+        storeEnvironments();
     }
 
 </script>
