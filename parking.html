@@ -6,6 +6,28 @@
     <title>Virac</title>
 
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script type="text/javascript">
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+        //Loading the pedestrian variable
+        AFRAME.registerComponent('playerbike', {
+            init:function(){
+                var player = getUrlVars().playertype;
+                if (player == "bicycle"){
+                    document.getElementById('playerscooter').setAttribute('visible','false');
+                }
+                else{
+                    document.getElementById('playerbike').setAttribute('visible','false');
+                }
+            }
+        });
+    </script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.2.0/dist/aframe-extras.min.js"></script> <!--Extra--->
     <script src="https://cdn.rawgit.com/zcanter/aframe-gradient-sky/master/dist/gradientsky.min.js"></script> <!--Weather--->
     <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script> <!--GUI--->
@@ -39,13 +61,17 @@
 
 
             <!-- 3D assets -->
-            <a-asset-item id="bicycle_obj" src="models/bicycle/bike.obj"></a-asset-item>
+            <a-asset-item id="bicycle_obj" src="models/bike/bicycle.obj"></a-asset-item>
+            <a-asset-item id="bicycle_mtl" src="models/bike/bicycle1.mtl"></a-asset-item>
+            <a-asset-item id="scooter_obj" src="models/scooter/Trotinette.obj"></a-asset-item>
+            <a-asset-item id="scooter_mtl" src="models/scooter/Trotinette.mtl"></a-asset-item>
             <a-asset-item id="redcar_obj" src="models/redcar/model.obj"></a-asset-item>
             <a-asset-item id="redcar_mtl" src="models/redcar/materials.mtl"></a-asset-item>
             <a-asset-item id="van_obj" src="models/van/van.obj"></a-asset-item>
             <a-asset-item id="van_mtl" src="models/van/van.mtl"></a-asset-item>
             <a-asset-item id="teacher_obj" src="models/teacher/Teacher_01.obj"></a-asset-item>
             <a-asset-item id="teacher_mtl" src="models/teacher/Teacher_01.mtl"></a-asset-item>
+
 
 
         </a-assets>
@@ -164,6 +190,14 @@
           <!-- Animation-->
           <a-animation id="path1" begin="path1" attribute="position" from="10 2 0" to="10 2 -48.5" dur="10000"></a-animation>
           <a-animation id="path2" begin="path2" attribute="position" from="10 2 -48.5" to="50 2 -48" dur="10000"></a-animation>
+
+          <a-entity playerbike id="playerbike">
+            <a-obj-model position="0 -2 -0.1"  src="#bicycle_obj" mtl="#bicycle_mtl" scale="0.1 0.1 0.1" rotation="0 175 0"></a-obj-model>
+         </a-entity>
+
+         <a-entity playerscooter id="playerscooter">
+            <a-obj-model position="0 -2.4 -0.1"  src="#scooter_obj" mtl="#scooter_mtl" scale="0.4 0.4 0.4" rotation="0 0 0"></a-obj-model>
+         </a-entity>
 
         </a-entity>
 

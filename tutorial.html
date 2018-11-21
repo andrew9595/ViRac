@@ -34,7 +34,8 @@
             <img id="chevronup" src="images/menu/chevronup.png">
 
             <!-- 3D assets -->
-            <a-asset-item id="bicycle_obj" src="models/bicycle/bike.obj"></a-asset-item>
+            <a-asset-item id="bicycle_obj" src="models/bike/bicycle.obj"></a-asset-item>
+            <a-asset-item id="bicycle_mtl" src="models/bike/bicycle1.mtl"></a-asset-item>
             <a-asset-item id="redcar_obj" src="models/redcar/model.obj"></a-asset-item>
             <a-asset-item id="redcar_mtl" src="models/redcar/materials.mtl"></a-asset-item>
             <a-asset-item id="oldman_obj" src="models/oldman/model.obj"></a-asset-item>
@@ -150,7 +151,9 @@
                 <a-text value="ViRAC tutorial" position="-0.2 -0.03 0" color="#FFDA03" width="1.5"></a-text>
             </a-entity>
 
-            <a-obj-model position="0 -3.5 0"  src="#bicycle_obj" scale="0.03 0.03 0.03" rotation="0 90 0"></a-obj-model>
+            <a-entity playerbike id="playerbike">
+                <a-obj-model position="0 -2 -0.1"  src="#bicycle_obj" mtl="#bicycle_mtl" scale="0.1 0.1 0.1" rotation="0 175 0"></a-obj-model>
+            </a-entity>
 
             <!-- Animation-->
           <a-animation id="path1" begin="path1" attribute="position" from="0.25 1.5 -2.5" to="0.25 1.5 -36.5" dur="10000"></a-animation>

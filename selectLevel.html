@@ -16,26 +16,27 @@
     <script src="shaders/skyGradient.js"></script>
   </head>
   <body>
-    <a-scene raycaster="far: 100; objects: [link];" cursor="rayOrigin: mouse" camera-position>
+    <a-scene>
       <a-assets>
         <!-- All images assets -->
-        <img id="sky" src="images/sky.png">
-        <img id="road" src="images/road.jpg">
-        <img id="sideroad" src="images/sideroad.jpg">
-        <img id="grass" src="images/grass.jpg">
-        <img id="cpavement" src="images/cycling_pavement.jpg">
-        <img id="walkway" src="images/walkway.jpg">
-        <img id="floor" src="images/floor.jpg">
-        <img id="segway" src="images/segway.png">
-        <img id="barrier" src="images/barrier.png">
-        <img id="hdb" src="images/hdb.png">
-        <img id="hdbg" src="images/hdbg.png">
-        <img id="park" src="images/park.png">
-        <img id="thumbCity" crossOrigin="anonymous" src="https://cdn.aframe.io/link-traversal/thumbs/city.png">
-        <img id="thumbSunrise" crossOrigin="anonymous" src="https://cdn.aframe.io/link-traversal/thumbs/sunrise.png">
-        <img id="thumbMountains" crossOrigin="anonymous" src="https://cdn.aframe.io/link-traversal/thumbs/mountains.png">
+        <img id="sky" src="images/environment/sky.png">
+        <img id="road" src="images/environment/road.jpg">
+        <img id="sideroad" src="images/environment/sideroad.jpg">
+        <img id="grass" src="images/environment/grass.jpg">
+        <img id="cpavement" src="images/environment/cycling_pavement.jpg">
+        <img id="walkway" src="images/environment/walkway.jpg">
+        <img id="segway" src="images/menu/segway.png">
+        <img id="bicycle" src="images/menu/bicycle.png">
+        <img id="barrier" src="images/environment/barrier.png">
+        <img id="hdb" src="images/environment/hdb.png">
+        <img id="hdbg" src="images/environment/hdbg.png">
+        <img id="park" src="images/environment/park.png">
+
+        <img id="levels" src="images/menu/levels.png">
       </a-assets>
+
       <!-- Envrionments -->
+
       <!-- Sky -->
         <a-sky src="#sky"></a-sky>
 
@@ -107,13 +108,43 @@
       <a-plane repeat="1 10" src="#road" position="0 0 -4" rotation="-90 0 0" width="10" height="100" color="#7BC8A4" shadow></a-plane>
       <a-plane repeat="1 10" src="#road" position="0 0 -59" rotation="-90 -90 0" width="10" height="100" color="#7BC8A4" shadow></a-plane>
 
-      <a-link href="Perform Precheck" position="-5 1.5 -1.0" image="#thumbCity"></a-link>
-      <a-link href="rideOnRoad.html" position="-2.5 1.5 -1.0" image="#thumbSunrise"></a-link>
-      <a-link href="Ride on PCN" position="0 1.5 -1.0" image="#thumbMountains"></a-link>
-      <a-link href="Ride on Walkway" position="2.5 1.5 -1.0" image="#thumbMountains"></a-link>
-      <a-link href="Parking" position="5 1.5 -1.0" image="#thumbMountains"></a-link>
-
-
+      <a-link id="precheckLink" position="-5 1.5 -4" image="#levels"></a-link>
+      <a-link id="parkingLink" position="-2.5 1.5 -4" image="#levels"></a-link>
+      <a-link id="rideonroadLink" position="0 1.5 -4" image="#levels"></a-link>
+      <a-link href="#" position="5 1.5 -4" image="#levels"></a-link>
+      <a-link href="#" position="2.5 1.5 -4" image="#levels"></a-link>
+      
+        <!-- Camera + cursor. -->
+        <a-entity camera position="-1 1.6 0.5" look-controls wasd-controls="acceleration: 500" id="camera">
+          <a-entity cursor="fuse: true; fuseTimeout: 1000"
+                    position="0 0 -1"
+                    geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                    material="color: black; shader: flat">
+            <a-animation begin="click" easing="ease-in" attribute="scale"
+                         fill="backwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
+            <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+                         fill="forwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
+          </a-entity>
+        </a-entity>
     </a-scene>
+
   </body>
 </html>
+
+<script type="text/javascript">
+    function getUrlVars() {
+        var vars = {};
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+            vars[key] = value;
+        });
+        return vars.playertype;
+    }
+
+    var currentPlayerType = getUrlVars();
+    
+    document.getElementById('precheckLink').setAttribute('href','precheck.html?playertype=' + currentPlayerType);
+    document.getElementById('parkingLink').setAttribute('href','parking.html?playertype=' + currentPlayerType);
+    document.getElementById('rideonroadLink').setAttribute('href','rideonroad.html?playertype=' + currentPlayerType);
+
+
+</script>
