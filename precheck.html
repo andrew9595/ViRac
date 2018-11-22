@@ -5,8 +5,41 @@
     <meta name="viewport" content="width=device-width">
     <title>Virac</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/engine.js"></script>
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
     <script type="text/javascript">
+        $.getJSON("environment.json", function( data ) {
+            //Loading the sky variable
+            AFRAME.registerComponent('mysky', {
+                init:function(){
+                    this.el.setAttribute('src','#' + data['environment']);
+                }
+            });
+
+            //Loading the vehicle variable
+            AFRAME.registerComponent('vehicles', {
+                init:function(){
+                    for (i=1; i<=data['vehicles']; i++){
+                        var car = "car"+i.toString();
+                        console.log(car);
+                        document.getElementById(car).setAttribute('visible','true');
+                    }
+                }
+            });
+
+            //Loading the people variable
+            AFRAME.registerComponent('pedestrians', {
+                init:function(){
+                    for (i=1; i<=data['pedestrians']; i++){
+                        var pedestrian = "pedestrian"+i.toString();
+                        console.log(pedestrian);
+                        document.getElementById(pedestrian).setAttribute('visible','true');
+                    }
+                }
+            });
+        });
+
         function getUrlVars() {
             var vars = {};
             var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -27,8 +60,6 @@
                 }
             }
         });
-
-
     </script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.2.0/dist/aframe-extras.min.js"></script> <!--Extra--->
     <script src="https://cdn.rawgit.com/zcanter/aframe-gradient-sky/master/dist/gradientsky.min.js"></script> <!--Weather--->
@@ -42,6 +73,8 @@
         <a-assets>
             <!-- All environment images assets -->
             <img id="sky" src="images/environment/sky.png">
+            <img id="night" src="images/environment/night.jpg">
+            <img id="rain" src="images/environment/rain.jpg">
             <img id="road" src="images/environment/road.jpg">
             <img id="sideroad" src="images/environment/sideroad.jpg">
             <img id="grass" src="images/environment/grass.jpg">
@@ -73,11 +106,25 @@
             <a-asset-item id="scooter_obj" src="models/scooter/Trotinette.obj"></a-asset-item>
             <a-asset-item id="scooter_mtl" src="models/scooter/Trotinette.mtl"></a-asset-item>
 
+            <a-asset-item id="redcar_obj" src="models/redcar/model.obj"></a-asset-item>
+            <a-asset-item id="redcar_mtl" src="models/redcar/materials.mtl"></a-asset-item>
+            <a-asset-item id="van_obj" src="models/van/van.obj"></a-asset-item>
+            <a-asset-item id="van_mtl" src="models/van/van.mtl"></a-asset-item>
+            <a-asset-item id="motor_obj" src="models/motor/model.obj"></a-asset-item>
+            <a-asset-item id="motor_mtl" src="models/motor/materials.mtl"></a-asset-item>
+            <a-asset-item id="bus_obj" src="models/bus/model.obj"></a-asset-item>
+            <a-asset-item id="bus_mtl" src="models/bus/materials.mtl"></a-asset-item>
+
+            <a-asset-item id="oldman_obj" src="models/oldman/model.obj"></a-asset-item>
+            <a-asset-item id="oldman_mtl" src="models/oldman/materials.mtl"></a-asset-item>
+            <a-asset-item id="boy_obj" src="models/boy/model.obj"></a-asset-item>
+            <a-asset-item id="boy_mtl" src="models/boy/materials.mtl"></a-asset-item>
+
 
         </a-assets>
 
         <!-- Sky -->
-        <a-sky src="#sky"></a-sky>
+        <a-sky mysky src="#sky"></a-sky>
 
         <!-- Barrier -->
         <a-box repeat="3 1" src="#barrier" position="0 1 10" rotation="0 0 0" width="15" height="1.5"></a-box>
@@ -322,7 +369,7 @@
                 <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0.8" width="9" height="1" position="5 5.5 -5" rotation="0 0 0" panel-color="#FFDA03">
                     <a-gui-button
                         width="3.5" height="0.75"
-                        onclick="toHome()"
+                        onclick="toselectLevel()"
                         value="Back to level selection"
                         font-family="Impact"
                         background-color="#FFDA03"
@@ -392,12 +439,119 @@
         </a-gui-flex-container>
         
         <a-video src="#demovideo" width="9" height="9" position="10 0 -25"></a-video>
+
+        <a-entity vehicles>
+            <a-entity id="car1" visible="false">
+                <a-obj-model src="#redcar_obj" mtl="#redcar_mtl" position="-4.5 0.8 7" rotation="0 180 0" scale="4 4 4"></a-obj-model>
+                <a-animation attribute="position" from="2 0 20" to="2 0 -100" repeat="indefinite" dur="10000"></a-animation>
+            </a-entity>
+            <a-entity id="car2" visible="false">
+                <a-obj-model src="#redcar_obj" mtl="#redcar_mtl" position="-4.5 0.8 7" rotation="0 180 0" scale="4 4 4"></a-obj-model>
+                <a-animation attribute="position" from="2 0 100" to="2 0 -100" repeat="indefinite" dur="20000"></a-animation>
+            </a-entity>
+            <a-entity id="car3" visible="false">
+              <a-obj-model src="#van_obj" mtl="#van_mtl" rotation="0 0 0" scale="0.08 0.08 0.08"></a-obj-model>
+              <a-animation attribute="position" from="2 0 -100" to="2 0 20" repeat="indefinite" dur="10000"></a-animation>
+            </a-entity>
+            <a-entity id="car4" visible="false">
+              <a-obj-model src="#motor_obj" mtl="#motor_mtl" rotation="0 90 0" scale="1 1 1"></a-obj-model>
+              <a-animation attribute="position" from="-10 1.5 -60" to="200 1.5 -60" repeat="indefinite" dur="12000"></a-animation>
+            </a-entity>
+            <a-entity id="car5" visible="false">
+              <a-obj-model src="#bus_obj" mtl="#bus_mtl" rotation="-1 320 2" scale="5 5 5"></a-obj-model>
+              <a-animation attribute="position" from="200 3 -55" to="-50 3 -55" repeat="indefinite" dur="15000"></a-animation>
+            </a-entity>
+            <a-entity id="car6" visible="false">
+              <a-obj-model src="#redcar_obj" mtl="#redcar_mtl" rotation="0 90 0" scale="5 5 5"></a-obj-model>
+              <a-animation attribute="position" from="-100 1 -60" to="200 1 -60" repeat="indefinite" dur="17000"></a-animation>
+            </a-entity>
+            <a-entity id="car7" visible="false">
+              <a-obj-model src="#van_obj" mtl="#van_mtl" rotation="0 0 0" scale="0.08 0.08 0.08"></a-obj-model>
+              <a-animation attribute="position" from="162 0 -45" to="162 0 40" repeat="indefinite" dur="17000"></a-animation>
+            </a-entity>
+        </a-entity>
+
+        <a-entity pedestrians>
+            <a-entity id="pedestrian1" visible="false">
+                <a-obj-model src="#oldman_obj" mtl="#oldman_mtl" position="60 1 -23" rotation="0 90 0" scale="8 8 8"></a-obj-model>
+                <a-animation attribute="position" from="60 1 -23" to="-35 1 -23" repeat="indefinite" dur="10000"></a-animation>
+            </a-entity>
+            <a-entity id="pedestrian2" visible="false">
+                <a-obj-model src="#boy_obj" mtl="#boy_mtl" position="60 0.8 -22" rotation="0 90 0" scale="8 8 8"></a-obj-model>
+                <a-animation attribute="position" from="60 0.8 -22" to="-35 0.8 -22" repeat="indefinite" dur="10000"></a-animation>
+            </a-entity>
+            <a-entity id="pedestrian3" visible="false">
+                <a-obj-model src="#boy_obj" mtl="#boy_mtl" position="8 0.8 -25" rotation="0 180 0" scale="8 8 8"></a-obj-model>
+                <a-animation attribute="position" from="8 0.8 -15" to="8 0.8 50" repeat="indefinite" dur="18000"></a-animation>
+            </a-entity>
+            <a-entity id="pedestrian4" visible="false">
+                <a-obj-model src="#oldman_obj" mtl="#oldman_mtl" position="8.5 0.8 -25" rotation="0 180 0" scale="8 8 8"></a-obj-model>
+                <a-animation attribute="position" from="8.5 0.8 -15" to="8.5 0.8 50" repeat="indefinite" dur="20000"></a-animation>
+            </a-entity>
+        </a-entity>
+
+        <a-entity vehicles>
+            <a-entity id="car1" visible="false">
+                <a-obj-model src="#redcar_obj" mtl="#redcar_mtl" position="-4.5 0.8 7" rotation="0 180 0" scale="4 4 4"></a-obj-model>
+                <a-animation attribute="position" from="2 0 20" to="2 0 -100" repeat="indefinite" dur="10000"></a-animation>
+            </a-entity>
+            <a-entity id="car2" visible="false">
+                <a-obj-model src="#redcar_obj" mtl="#redcar_mtl" position="-4.5 0.8 7" rotation="0 180 0" scale="4 4 4"></a-obj-model>
+                <a-animation attribute="position" from="2 0 100" to="2 0 -100" repeat="indefinite" dur="20000"></a-animation>
+            </a-entity>
+            <a-entity id="car3" visible="false">
+              <a-obj-model src="#van_obj" mtl="#van_mtl" rotation="0 0 0" scale="0.08 0.08 0.08"></a-obj-model>
+              <a-animation attribute="position" from="2 0 -100" to="2 0 20" repeat="indefinite" dur="10000"></a-animation>
+            </a-entity>
+            <a-entity id="car4" visible="false">
+              <a-obj-model src="#motor_obj" mtl="#motor_mtl" rotation="0 90 0" scale="1 1 1"></a-obj-model>
+              <a-animation attribute="position" from="-10 1.5 -60" to="200 1.5 -60" repeat="indefinite" dur="12000"></a-animation>
+            </a-entity>
+            <a-entity id="car5" visible="false">
+              <a-obj-model src="#bus_obj" mtl="#bus_mtl" rotation="-1 320 2" scale="5 5 5"></a-obj-model>
+              <a-animation attribute="position" from="200 3 -55" to="-50 3 -55" repeat="indefinite" dur="15000"></a-animation>
+            </a-entity>
+            <a-entity id="car6" visible="false">
+              <a-obj-model src="#redcar_obj" mtl="#redcar_mtl" rotation="0 90 0" scale="5 5 5"></a-obj-model>
+              <a-animation attribute="position" from="-100 1 -60" to="200 1 -60" repeat="indefinite" dur="17000"></a-animation>
+            </a-entity>
+            <a-entity id="car7" visible="false">
+              <a-obj-model src="#van_obj" mtl="#van_mtl" rotation="0 0 0" scale="0.08 0.08 0.08"></a-obj-model>
+              <a-animation attribute="position" from="162 0 -45" to="162 0 40" repeat="indefinite" dur="17000"></a-animation>
+            </a-entity>
+        </a-entity>
+
+        <a-entity pedestrians>
+            <a-entity id="pedestrian1" visible="false">
+                <a-obj-model src="#oldman_obj" mtl="#oldman_mtl" position="60 1 -23" rotation="0 90 0" scale="8 8 8"></a-obj-model>
+                <a-animation attribute="position" from="60 1 -23" to="-35 1 -23" repeat="indefinite" dur="10000"></a-animation>
+            </a-entity>
+            <a-entity id="pedestrian2" visible="false">
+                <a-obj-model src="#boy_obj" mtl="#boy_mtl" position="60 0.8 -22" rotation="0 90 0" scale="8 8 8"></a-obj-model>
+                <a-animation attribute="position" from="60 0.8 -22" to="-35 0.8 -22" repeat="indefinite" dur="10000"></a-animation>
+            </a-entity>
+            <a-entity id="pedestrian3" visible="false">
+                <a-obj-model src="#boy_obj" mtl="#boy_mtl" position="8 0.8 -25" rotation="0 180 0" scale="8 8 8"></a-obj-model>
+                <a-animation attribute="position" from="8 0.8 -15" to="8 0.8 50" repeat="indefinite" dur="18000"></a-animation>
+            </a-entity>
+            <a-entity id="pedestrian4" visible="false">
+                <a-obj-model src="#oldman_obj" mtl="#oldman_mtl" position="8.5 0.8 -25" rotation="0 180 0" scale="8 8 8"></a-obj-model>
+                <a-animation attribute="position" from="8.5 0.8 -15" to="8.5 0.8 50" repeat="indefinite" dur="20000"></a-animation>
+            </a-entity>
+        </a-entity>
         
     </a-scene>
 </body>
 </html>
 
 <script>
+    //Set stage 
+    setStage();
+
+    //Set the stage of page assets on load
+    function setStage(){
+        greenLight();
+    }
 
     var finalScore = 0;
 
@@ -456,4 +610,37 @@
         document.getElementById('player_bicycle').setAttribute('position', {x:10, y:2.5, z:-20});
     }
 
+    function toselectLevel(){
+        window.location.replace("selectpmd.html");
+    }
+
+    function greenLight() {
+        setTimeout(function(){
+            document.getElementById('red').setAttribute('visible', 'false');
+            document.getElementById('yellow').setAttribute('visible', 'false');
+            document.getElementById('green').setAttribute('visible', 'true');
+            console.log('Green Light activated');
+            yellowLight();  
+        }, 12000);   
+    }
+
+    function yellowLight() {
+        setTimeout(function(){
+            document.getElementById('red').setAttribute('visible', 'false');
+            document.getElementById('yellow').setAttribute('visible', 'true');
+            document.getElementById('green').setAttribute('visible', 'false');
+            console.log('Yellow Light activated');
+            redLight();
+        }, 8000);    
+    }
+
+    function redLight() {
+        setTimeout(function(){
+            document.getElementById('red').setAttribute('visible', 'true');
+            document.getElementById('yellow').setAttribute('visible', 'false');
+            document.getElementById('green').setAttribute('visible', 'false');
+            console.log('Red Light activated');
+            greenLight()
+        }, 2000);
+    }
 </script>

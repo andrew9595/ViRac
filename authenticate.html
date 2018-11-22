@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <title>Virac</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.2.0/dist/aframe-extras.min.js"></script> <!--Extra--->
     <script src="https://cdn.rawgit.com/zcanter/aframe-gradient-sky/master/dist/gradientsky.min.js"></script> <!--Weather--->
@@ -13,6 +14,15 @@
     <script src="https://rawgit.com/atomicguy/aframe-fence-component/master/dist/aframe-fence-component.min.js"></script>
 
     <script>
+        $.getJSON("environment.json", function( data ) {
+            //Loading the sky variable
+            AFRAME.registerComponent('mysky', {
+                init:function(){
+                    this.el.setAttribute('src','#' + data['environment']);
+                }
+            });
+        });
+
     (function() {
 
         // Optimization for Repeat Views
@@ -136,6 +146,8 @@
         <a-assets>
             <!-- All images assets -->
             <img id="sky" src="images/environment/sky.png">
+            <img id="night" src="images/environment/night.jpg">
+            <img id="rain" src="images/environment/rain.jpg">
             <img id="road" src="images/environment/road.jpg">
             <img id="sideroad" src="images/environment/sideroad.jpg">
             <img id="grass" src="images/environment/grass.jpg">
@@ -151,7 +163,7 @@
         </a-assets>
 
         <!-- Sky -->
-        <a-sky src="#sky"></a-sky>
+        <a-sky mysky src="#sky"></a-sky>
 
         <!-- Barrier -->
         <a-box repeat="3 1" src="#barrier" position="0 1 10" rotation="0 0 0" width="15" height="1.5"></a-box>

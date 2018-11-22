@@ -9,6 +9,14 @@
     <script src="js/engine.js"></script>
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
     <script>
+        $.getJSON("environment.json", function( data ) {
+            //Loading the sky variable
+            AFRAME.registerComponent('mysky', {
+                init:function(){
+                    this.el.setAttribute('src','#' + data['environment']);
+                }
+            });
+        });
 
         $.getJSON( "environment.json", function( data ) {
             //Loading the pedestrian variable
@@ -39,6 +47,8 @@
         <a-assets>
             <!-- All images assets -->
             <img id="sky" src="images/environment/sky.png">
+            <img id="night" src="images/environment/night.jpg">
+            <img id="rain" src="images/environment/rain.jpg">
             <img id="road" src="images/environment/road.jpg">
             <img id="sideroad" src="images/environment/sideroad.jpg">
             <img id="grass" src="images/environment/grass.jpg">
@@ -50,13 +60,13 @@
             <img id="hdb" src="images/environment/hdb.png">
             <img id="hdbg" src="images/environment/hdbg.png">
             <img id="park" src="images/environment/park.png">
-            <img id="sun" src="images/designer/sun.png">
-            <img id="rain" src="images/designer/rain.png">
-            <img id="moon" src="images/designer/moon.png">
+            <img id="sunIcon" src="images/designer/sun.png">
+            <img id="rainIcon" src="images/designer/rain.png">
+            <img id="moonIcon" src="images/designer/moon.png">
         </a-assets>
 
         <!-- Sky -->
-        <a-sky src="#sky"></a-sky>
+        <a-sky mysky src="#sky"></a-sky>
 
         <!-- Barrier -->
         <a-box repeat="3 1" src="#barrier" position="0 1 10" rotation="0 0 0" width="15" height="1.5"></a-box>
@@ -258,7 +268,7 @@
                         border-color="#000"
                         hover-color="#DD9E00"
                         border-width="2"> 
-                        <a-image src="#sun" width="0.5" height="0.5" position="0 0 0.25"></a-image>
+                        <a-image src="#sunIcon" width="0.5" height="0.5" position="0 0 0.25"></a-image>
                     </a-gui-button>
                     <a-gui-button
                         id="rainBtn"
@@ -271,7 +281,7 @@
                         border-color="#000"
                         hover-color="#DD9E00"
                         border-width="2">
-                        <a-image src="#rain" width="0.5" height="0.5" position="0 0 0.25"></a-image> 
+                        <a-image src="#rainIcon" width="0.5" height="0.5" position="0 0 0.25"></a-image> 
                     </a-gui-button>
                     <a-gui-button
                         id="moonBtn"
@@ -285,7 +295,7 @@
                         border-color="#000"
                         hover-color="#DD9E00"
                         border-width="2">
-                        <a-image src="#moon" width="0.5" height="0.5" position="-0.2 0 0.25"></a-image>  
+                        <a-image src="#moonIcon" width="0.5" height="0.5" position="-0.2 0 0.25"></a-image>  
                     </a-gui-button>
                 </a-gui-flex-container>
                 <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0.8" width="9" height="1" position="5 5.5 -5" rotation="0 0 0" panel-color="#FFDA03">
@@ -346,15 +356,17 @@
     }
 
     function addPedestrians(){
-        if (pedestriansCount <10){
+        if (pedestriansCount <4){
             pedestriansCount++;
+            updatePedestrians()
             console.log(pedestriansCount);
         }
     };
 
     function addVehicles(){
-        if (vehiclesCount <10){
+        if (vehiclesCount <7){
             vehiclesCount++;
+            updateVehicles()
             console.log(vehiclesCount);
         }
         
@@ -363,6 +375,7 @@
     function subtractPedestrians(){
         if (pedestriansCount > 1){
             pedestriansCount--;
+            updatePedestrians()
             console.log(pedestriansCount);
         }
     };
@@ -370,21 +383,24 @@
     function subtractVehicles(){
         if (vehiclesCount > 1){
             vehiclesCount--;
+            updateVehicles()
             console.log(vehiclesCount);
         }
     };
 
-    setInterval(function() {
+    function updatePedestrians(){
         document.getElementById('pedestriansVal').setAttribute('font-color','#FFF');
         document.getElementById('pedestriansVal').setAttribute('background-color','#FFF');
         document.getElementById('pedestriansVal').setAttribute('value',pedestriansCount);
         document.getElementById('pedestriansVal').setAttribute('font-color','#000');
+    }
 
+    function updateVehicles(){
         document.getElementById('vehiclesVal').setAttribute('font-color','#FFF');
         document.getElementById('vehiclesVal').setAttribute('background-color','#FFF');
         document.getElementById('vehiclesVal').setAttribute('value',vehiclesCount);
         document.getElementById('vehiclesVal').setAttribute('font-color','#000');
-    }, 1000);
+    }
 
 
     // Button href links
