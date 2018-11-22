@@ -5,10 +5,6 @@
 VIRAC is a Virtual Reality (VR) system that guides Cyclists, Personal Mobility Device (PMD) and Road. Users on the latest rules that have been implemented by Singapore Cycling Task Force (SCTF). This system will allow users to experience what it is like being a bicycle/PMD user in Singapore. It will also show the cyclists how to prepare before and during a ride on the PMD/bicycle, at the Park Connector Network (PCN), Pedestrian Walkways and even on Roads. It will also show the users how to properly park their bicycle/PMDs when the user comes to a stop. This system will also allow SCTF members to adjust the number of vehicles, pedestrians and even the environment of the system . After adjusting the settings of the system, SCTF members are also allowed to play on the ViRAC system and test out the environment of the system. Normal users, that is to say non-SCTF members, will not have the ability to
 adjust the environment and settings of the system as this is only available for the SCTF members.
 
-  - Type some Markdown on the left
-  - See HTML in the right
-  - Magic
-
 ## Getting Started 
 Download the repository as zip file at -
 ```sh
@@ -91,19 +87,19 @@ ViRac is very simple to use. Kindly place the root folder onto any server eg. lo
 * Javascript and HTML
 
 ## Authors
-* **Htet Myet Myo Thaw(1702196)**
-*
-*
-*
-*
-*
+* **Htet Myet Myo Thaw (1702196)**
+* **Azman Salleh (1700955)**
+* **Samuel Toh Yao Rong (1700604)**
+* **Koh Zhi Yao (1700984)**
+* **Cheryl Ng (1702422)**
+* **Lee Yao En (1700178)**
 
-## Todos
+## FAQ
 
- - Write MORE Tests
- - Add Night Mode
+#### Is this a single player experience?
+Yes
 
 License
 ----
 
-SIT Team 13 
+SIT ICT2X01 Team 13 
