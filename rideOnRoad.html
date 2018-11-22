@@ -45,12 +45,14 @@
         <img id="thumbMountains" crossOrigin="anonymous" src="https://cdn.aframe.io/link-traversal/thumbs/mountains.png">
         <a-asset-item id="person_obj" src="models/pedestrian/model.obj"></a-asset-item>
         <a-asset-item id="person_mtl" src="models/pedestrian/materials.mtl"></a-asset-item>
+        <a-asset-item id="warning_obj" src="models/warning/model.obj"></a-asset-item>
+        <a-asset-item id="warning_mtl" src="models/warning/materials.mtl"></a-asset-item>
         <a-asset-item id="car_obj" src="models/redcar/model.obj"></a-asset-item>
         <a-asset-item id="car_mtl" src="models/redcar/materials.mtl"></a-asset-item>
         <a-asset-item id="van_obj" src="models/van/van.obj"></a-asset-item>
         <a-asset-item id="van_mtl" src="models/van/van.mtl"></a-asset-item>
         <a-asset-item id="bicycle_obj" src="models/Bicycle/bicycle.obj"></a-asset-item>
-        <a-asset-item id="bicycle_mtl" src="models/Bicycle/bicycle1.mtl"></a-asset-item>
+        <a-asset-item id="bicycle_mtl" src="models/Bicycle/bicycle.max"></a-asset-item>
         <a-asset-item id="scooter_obj" src="models/Scooter/Trotinette.obj"></a-asset-item>
         <a-asset-item id="scooter_mtl" src="models/Scooter/Trotinette.mtl"></a-asset-item>
       </a-assets>
@@ -156,50 +158,101 @@
           </a-gui-flex-container>
       </a-entity>
 
-      <a-box position="-2.45 1 -40" opacity="0" width="5" height="5" scale="1 1 5" rotation="0 0 0"></a-box>
+      <a-box id="fb" position="-2.45 1 -40" opacity="0" width="5" height="5" scale="1 1 5" rotation="0 0 0"></a-box>
 
       <a-entity id="menu2" visible="false">
-          <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" component-padding="1" opacity="1" width="9" height="4.5" position="0 5 -50" rotation="0 0 0" panel-color="#FFDA03">
-              <a-gui-button
-                  position="0 -1 0"
-                  onclick="loadBicycle()"
-                  width="4" height="1"
-                  value="Yes"
+        <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="9" height="4.5" position="0 5 -50" rotation="0 0 0" panel-color="#FFDA03">
+              <a-gui-flex-container flex-direction="column" justify-content="top" align-items="normal" opacity="1" width="9" height="4" position="0 2.5 -5" rotation="0 0 0" panel-color="#FFDA03">
+              <a-gui-label
+                  width="9" height="0.5"
+                  value="Should you wait for the pedestrian to cross?"
                   font-family="Impact"
-                  background-color="#FFDA03"
+                  font-size = "100px"
                   font-color="#000"
-                  border-color="#000"
-                  hover-color="#DD9E00"
-                  border-width="2">
-              </a-gui-button>
-              <a-gui-button
-                  onclick="loadPMD()"
-                  width="4" height="1"
-                  icon="social-github"
-                  value="No"
-                  font-family="Impact"
-                  background-color="#FFDA03"
-                  font-color="#000"
-                  border-color="#000"
-                  hover-color="#DD9E00"
-                  border-width="2">
-              </a-gui-button>
+                  margin="0 0 0 0"
+                  background-color="#FFDA03">
+              </a-gui-label>
+              <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0.8" width="9" height="3" position="5 10 -5" rotation="0 0 0" panel-color="#FFDA03">
+                  <a-gui-button value="Yes"
+                    margin="0 1 0 0"
+                    onclick="menu2_yes()">
+
+
+                  </a-gui-button>
+                  <a-gui-button value="No"
+                   onclick="menu2_no()">
+
+                  </a-gui-button>
+              </a-gui-flex-container>
           </a-gui-flex-container>
       </a-entity>
+      <a-entity id="menu2_no" visible="false">
+        <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="9" height="4.5" position="0 5 -50" rotation="0 0 0" panel-color="#FFDA03">
+              <a-gui-flex-container flex-direction="column" justify-content="top" align-items="normal" opacity="1" width="9" height="4" position="0 2.5 -5" rotation="0 0 0" panel-color="#FFDA03">
+              <a-gui-label
+                  width="9" height="0.5"
+                  value="Wrong! You must always wait for pedestrian to cross first"
+                  font-family="Impact"
+                  font-size = "100px"
+                  font-color="#000"
+                  margin="0 0 0 0"
+                  background-color="#FFDA03">
+              </a-gui-label>
+              <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0.8" width="9" height="3" position="5 10 -5" rotation="0 0 0" panel-color="#FFDA03">
+                  <a-gui-button value="Next"
+                    margin="0 1 0 0"
+                    onclick="menu2_next()">
 
-      <!---normal player--->
-      <!-- <a-entity id="player" position="0 2 -2" camera look-controls  wasd-controls="acceleration:50">
-        <a-entity cursor="fuse: true; fuseTimeout: 3000"
-                position="0 0 -1"
-                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                material="color: black; shader: flat">
-                <a-animation begin="click" easing="ease-in" attribute="scale"
-                     fill="backwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
-                <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
-                     fill="forwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
-        </a-entity>
-      </a-entity> -->
-      <a-entity id="player" position="-4 2 -2" camera look-controls wasd-controls="acceleration:200"
+
+
+              </a-gui-flex-container>
+          </a-gui-flex-container>
+      </a-entity>
+      <a-entity id="menu_warning1">
+        <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="9" height="4.5" position="55 5 -59" rotation="0 -90 0" panel-color="#FFDA03">
+              <a-gui-flex-container flex-direction="column" justify-content="top" align-items="normal" opacity="1" width="9" height="4" position="0 2.5 -5" rotation="0 0 0" panel-color="#FFDA03">
+              <a-gui-label
+                  width="9" height="5"
+                  value="Always be aware of the oncoming verhicles"
+                  font-family="Impact"
+                  font-size = "100px"
+                  font-color="#000"
+                  margin="0 0 0 0"
+                  background-color="#FFDA03">
+              </a-gui-label>
+
+          </a-gui-flex-container>
+      </a-entity>
+      <a-entity id="menu_breakdown">
+        <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="9" height="4.5" position="75 5 -59" rotation="0 -90 0" panel-color="#FFDA03">
+              <a-gui-flex-container flex-direction="column" justify-content="top" align-items="normal" opacity="1" width="9" height="4" position="0 2.5 -5" rotation="0 0 0" panel-color="#FFDA03">
+              <a-gui-label
+                  width="9" height="5"
+                  value="Please avoid the obstacle"
+                  font-family="Impact"
+                  font-size = "100px"
+                  font-color="#000"
+                  margin="0 0 0 0"
+                  background-color="#FFDA03">
+              </a-gui-label>
+
+          </a-gui-flex-container>
+      </a-entity>
+      <a-entity id="menu_blindspot">
+        <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="9" height="4.5" position="160 5 -40" rotation="0 180 0" panel-color="#FFDA03">
+              <a-gui-flex-container flex-direction="column" justify-content="top" align-items="normal" opacity="1" width="9" height="4" position="0 2.5 -5" rotation="0 0 0" panel-color="#FFDA03">
+                <a-gui-label
+                    width="9" height="5"
+                    value="Always check your blindspot while riding"
+                    font-family="Impact"
+                    font-size = "100px"
+                    font-color="#000"
+                    margin="0 0 0 0"
+                    background-color="#FFDA03">
+                </a-gui-label>
+          </a-gui-flex-container>
+      </a-entity>
+      <a-entity id="player" position="-4 2 -2" camera look-controls
         foo geometry="primitive: box">
         <a-entity id="p_cursor" cursor="fuse: true; fuseTimeout: 1000"
                   position="0 0 -1"
@@ -218,8 +271,8 @@
 
       </a-entity>
       <!--player on bicycle -->
-      <a-entity id="player_bicycle" position="-4 2 -2" camera look-controls wasd-controls="acceleration:200"
-          body="type: static; mass: 5; shape: none;" aabb-collider="objects:a-box" foo geometry="primitive: box">
+      <a-entity id="player_bicycle" position="-4 2 -2" camera look-controls
+          body="type: static; mass: 5; shape: none;" aabb-collider="objects:a-box" foo geometry="primitive: box" test geometry="primitive: obj">
           <a-entity id="b_cursor" cursor="fuse: true; fuseTimeout: 1000"
                     position="0 0 -1"
                     geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
@@ -232,12 +285,18 @@
           <!-- Animation-->
           <a-animation id="path1" begin="path1" attribute="position" from="-4 2 -2" to="-4.2 2 -40" dur="10000"></a-animation>
           <a-animation id="path2" begin="path2" attribute="position" from="-4.2 2 -40" to="-3 2 -61" dur="10000"></a-animation>
+          <a-animation id="path3" begin="path3" attribute="position" from="-3 2 -61" to="45 2 -61" dur="10000"></a-animation>
+          <a-animation id="path4" begin="path4" attribute="position" from="45 2 -61" to="67 2 -61" dur="10000"></a-animation>
+          <a-animation id="path5" begin="path5" attribute="position" from="67 2 -61" to="78 2 -65" dur="10000"></a-animation>
+          <a-animation id="path6" begin="path6" attribute="position" from="78 2 -65" to="85 2 -61" dur="10000"></a-animation>
+          <a-animation id="path7" begin="path7" attribute="position" from="85 2 -61" to="163 2 -61" dur="10000"></a-animation>
+          <a-animation id="path8" begin="path8" attribute="position" from="163 2 -61" to="163 2 -20" dur="10000"></a-animation>
         <!-- Bicycle-->
-        <a-obj-model position="0 -2 0"  src="#bicycle_obj" mtl="#bicycle_mtl" scale="0.1 0.1 0.1" rotation="0 -180 0"></a-obj-model>
+        <a-obj-model position="0 -2 0"  src="#bicycle_obj" mtl="#bicycle_mtl" scale="0.1 0.1 0.1"  rotation="0 -180 0"></a-obj-model>
       </a-entity>
 
-      <a-entity id="player_scooter" position="-4 2 -2" camera look-controls wasd-controls="acceleration:200"
-        body="type: static; mass: 5; shape: none;" aabb-collider="objects:a-plane" foo geometry="primitive: plane">
+      <a-entity id="player_scooter" position="-4 2 -2" camera look-controls
+        body="type: static; mass: 5; shape: none;" aabb-collider="objects:a-plane" foo geometry="primitive: box">
         <a-entity id="s_cursor" cursor="fuse: true; fuseTimeout: 1000"
                   position="0 0 -1"
                   geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
@@ -257,10 +316,16 @@
         <a-obj-model src="#car_obj" mtl="#car_mtl" position="1.5 0 4" scale="4 4 4" rotation="0 180 0"></a-obj-model>
         <a-animation attribute="position" from="1.5 0 4" to="2 0 -65" repeat="indefinite" dur="10000"></a-animation>
       </a-entity> -->
-      <a-obj-model src="#person_obj" mtl="#person_mtl" position="6.7 2 -45" scale="3 3 3" rotation="0 90 0"></a-obj-model>
+      <a-entity id="pdt1" position="6.7 2 -45">
+        <a-animation id="pdt1_path" begin="pdt1_path" attribute="position" from="6.7 2 -45" to="-7.5 2 -45" dur="10000"></a-animation>
+        <a-obj-model src="#person_obj" mtl="#person_mtl" scale="3 3 3" rotation="0 90 0"></a-obj-model>
 
+      </a-entity>
 
-      <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="2" height="2" position="-2.4 -0.1 -11.370" rotation="-90 0 0" panel-color="#FFDA03">
+      <a-obj-model src="#warning_obj" mtl="#warning_mtl" scale="8 8 8" position="75 0.5 -59" rotation="0 90 0"></a-obj-model>
+      <a-obj-model src="#car_obj" mtl="#car_mtl" position="78 0.5 -59" scale="4 4 4" rotation="0 180 0"></a-obj-model>
+
+      <a-gui-flex-container id="path1_gui" visible="false" flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="2" height="2" position="-2.4 -0.1 -11.370" rotation="-90 0 0" panel-color="#FFDA03">
           <a-gui-button
               width="5" height="5"
               onclick="path1()"
@@ -273,7 +338,7 @@
       </a-gui-flex-container>
 
       <!-- Path 2 -->
-        <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="2" height="2" position="-3 -0.1 -59" rotation="-90 0 0" panel-color="#FFDA03">
+        <a-gui-flex-container id="path2_gui" visible="false" flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="2" height="2" position="-3 -0.1 -59" rotation="-90 0 0" panel-color="#FFDA03">
             <a-gui-button
                 width="5" height="5"
                 onclick="path2()"
@@ -285,6 +350,77 @@
             </a-gui-button>
         </a-gui-flex-container>
 
+        <!-- Path 3 -->
+          <a-gui-flex-container id="path3_gui" visible="true" flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="2" height="2" position="20 -0.1 -59" rotation="-90 -90 0" panel-color="#FFDA03">
+              <a-gui-button
+                  width="5" height="5"
+                  onclick="path3()"
+                  value="_"
+                  font-family="Arial"
+                  margin="0 0 0.05 0"
+                  background-color="#2d2d2d">
+                  <a-image src="#chevronup" width="4" height="4" position="0 0 0.25"></a-image>
+              </a-gui-button>
+          </a-gui-flex-container>
+
+          <!-- Path 4 -->
+            <a-gui-flex-container id="path4_gui" visible="true" flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="2" height="2" position="60 -0.1 -59" rotation="-90 -90 0" panel-color="#FFDA03">
+                <a-gui-button
+                    width="5" height="5"
+                    onclick="path4()"
+                    value="_"
+                    font-family="Arial"
+                    margin="0 0 0.05 0"
+                    background-color="#2d2d2d">
+                    <a-image src="#chevronup" width="4" height="4" position="0 0 0.25"></a-image>
+                </a-gui-button>
+            </a-gui-flex-container>
+            <!-- Path 5 -->
+              <a-gui-flex-container id="path5_gui" visible="true" flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="2" height="2" position="76 -0.1 -66" rotation="-90 -90 0" panel-color="#FFDA03">
+                  <a-gui-button
+                      width="5" height="5"
+                      onclick="path5()"
+                      value="_"
+                      font-family="Arial"
+                      margin="0 0 0.05 0"
+                      background-color="#2d2d2d">
+                      <a-image src="#chevronup" width="4" height="4" position="0 0 0.25"></a-image>
+                  </a-gui-button>
+              </a-gui-flex-container>
+              <!-- Path 6 -->
+                <a-gui-flex-container id="path6_gui" visible="true" flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="2" height="2" position="85 -0.1 -59" rotation="-90 -90 0" panel-color="#FFDA03">
+                    <a-gui-button
+                        width="5" height="5"
+                        onclick="path6()"
+                        value="_"
+                        font-family="Arial"
+                        margin="0 0 0.05 0"
+                        background-color="#2d2d2d">
+                        <a-image src="#chevronup" width="4" height="4" position="0 0 0.25"></a-image>
+                    </a-gui-button>
+                </a-gui-flex-container>
+                <a-gui-flex-container id="path7_gui" visible="true" flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="2" height="2" position="103 -0.1 -59" rotation="-90 -90 0" panel-color="#FFDA03">
+                    <a-gui-button
+                        width="5" height="5"
+                        onclick="path7()"
+                        value="_"
+                        font-family="Arial"
+                        margin="0 0 0.05 0"
+                        background-color="#2d2d2d">
+                        <a-image src="#chevronup" width="4" height="4" position="0 0 0.25"></a-image>
+                    </a-gui-button>
+                </a-gui-flex-container>
+                <a-gui-flex-container id="path8_gui" visible="true" flex-direction="row" justify-content="center" align-items="normal" opacity="0" width="2" height="2" position="161 -0.1 -49" rotation="-90 -90 0" panel-color="#FFDA03">
+                    <a-gui-button
+                        width="5" height="5"
+                        onclick="path8()"
+                        value="_"
+                        font-family="Arial"
+                        margin="0 0 0.05 0"
+                        background-color="#2d2d2d">
+                        <a-image src="#chevronup" width="4" height="4" position="0 0 0.25"></a-image>
+                    </a-gui-button>
+                </a-gui-flex-container>
       <a-link href="Perform Precheck" position="152.5 1.5 -1.0" image="#thumbCity"></a-link>
       <a-link href="selectLevel.html" position="155 1.5 -1.0" image="#thumbSunrise"></a-link>
       <a-link href="Ride on PCN" position="157 1.5 -1.0" image="#thumbMountains"></a-link>
@@ -307,12 +443,22 @@
           })
         }
     })
+    AFRAME.registerComponent("test", {
+          init: function() {
+            this.el.addEventListener("hitstart", (e) => {
+              console.log('Hit!');
+              document.getElementById('menu2').setAttribute('visible','true');
+
+            })
+          }
+      })
   function loadPlayer(){
     document.getElementById('player').setAttribute('visible', 'true');
     document.getElementById('player_bicycle').setAttribute('visible', 'false');
     document.getElementById('player_scooter').setAttribute('visible', 'false');
   }
   function loadBicycle(){
+    document.getElementById('path1_gui').setAttribute('visible','true')
     document.getElementById('p_cursor').setAttribute('visible', 'false');
     document.getElementById('s_cursor').setAttribute('visible', 'false');
     document.getElementById('player').setAttribute('visible', 'false');
@@ -322,6 +468,7 @@
   }
 
   function loadPMD(){
+    document.getElementById('path1_gui').setAttribute('visible','true')
     document.getElementById('p_cursor').setAttribute('visible', 'false');
     document.getElementById('b_cursor').setAttribute('visible', 'false');
     document.getElementById('player').setAttribute('visible', 'false');
@@ -339,5 +486,45 @@
       document.getElementById('player_bicycle').emit('path2')
       document.getElementById('player_scooter').emit('path2')
   }
+  function path3(){
+      document.getElementById('player_bicycle').emit('path3')
+      document.getElementById('player_scooter').emit('path3')
+  }
+  function path4(){
+      document.getElementById('player_bicycle').emit('path4')
+      document.getElementById('player_scooter').emit('path4')
+  }
+  function path5(){
+      document.getElementById('player_bicycle').emit('path5')
+      document.getElementById('player_scooter').emit('path5')
+  }
+  function path6(){
+      document.getElementById('player_bicycle').emit('path6')
+      document.getElementById('player_scooter').emit('path6')
+  }
+  function path7(){
+      document.getElementById('player_bicycle').emit('path7')
+      document.getElementById('player_scooter').emit('path7')
+  }
+  function path8(){
+      document.getElementById('player_bicycle').emit('path8')
+      document.getElementById('player_scooter').emit('path8')
+  }
 
+  function menu2_yes(){
+
+    document.getElementById('menu2').setAttribute('visible','false')
+    document.getElementById('path2_gui').setAttribute('visible','true')
+    document.getElementById('pdt1').emit('pdt1_path')
+  }
+  function menu2_no(){
+      document.getElementById('menu2').setAttribute('visible','false')
+      document.getElementById('menu2_no').setAttribute('visible','true')
+  }
+  function menu2_next(){
+    document.getElementById('menu2').setAttribute('visible','false')
+    document.getElementById('menu2_no').setAttribute('visible','false')
+    document.getElementById('path2_gui').setAttribute('visible','true')
+    document.getElementById('pdt1').emit('pdt1_path')
+  }
 </script>
