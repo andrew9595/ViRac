@@ -12,7 +12,7 @@ https://github.com/andrew9595/ViRac/
 ```
 or clone the repository -   
 ```sh
-git clone https://github.com/azmansalleh/team13.git
+git clone https://github.com/andrew9595/team13.git
 ```
 
 ### Prerequisites
