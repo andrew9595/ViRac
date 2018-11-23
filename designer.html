@@ -260,7 +260,7 @@
                     <a-gui-button
                         id="sunBtn"
                         width="1.5" height="0.75"
-                        onclick="setSky();"
+                        onclick="setSun();"
                         value="_"
                         font-family="Impact"
                         font-color="#000"
@@ -375,7 +375,7 @@
     function subtractPedestrians(){
         if (pedestriansCount > 1){
             pedestriansCount--;
-            updatePedestrians()
+            updatePedestrians();
             console.log(pedestriansCount);
         }
     };
