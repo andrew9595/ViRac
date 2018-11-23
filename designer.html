@@ -9,15 +9,6 @@
     <script src="js/engine.js"></script>
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
     <script>
-        $.getJSON("environment.json", function( data ) {
-            //Loading the sky variable
-            AFRAME.registerComponent('mysky', {
-                init:function(){
-                    this.el.setAttribute('src','#' + data['environment']);
-                }
-            });
-        });
-
         $.getJSON( "environment.json", function( data ) {
             //Loading the pedestrian variable
             AFRAME.registerComponent('pedestrians', {
@@ -25,7 +16,6 @@
                     this.el.setAttribute('value', data['pedestrians']);
                 }
             });
-
             //Loading the pedestrians variable
             AFRAME.registerComponent('vehicles', {
                 init:function(){
@@ -47,8 +37,6 @@
         <a-assets>
             <!-- All images assets -->
             <img id="sky" src="images/environment/sky.png">
-            <img id="night" src="images/environment/night.jpg">
-            <img id="rain" src="images/environment/rain.jpg">
             <img id="road" src="images/environment/road.jpg">
             <img id="sideroad" src="images/environment/sideroad.jpg">
             <img id="grass" src="images/environment/grass.jpg">
@@ -60,13 +48,16 @@
             <img id="hdb" src="images/environment/hdb.png">
             <img id="hdbg" src="images/environment/hdbg.png">
             <img id="park" src="images/environment/park.png">
+            <img id="sun" src="images/designer/sun.png">
+            <img id="rain" src="images/designer/rain.png">
+            <img id="moon" src="images/designer/moon.png">
             <img id="sunIcon" src="images/designer/sun.png">
             <img id="rainIcon" src="images/designer/rain.png">
             <img id="moonIcon" src="images/designer/moon.png">
         </a-assets>
 
         <!-- Sky -->
-        <a-sky mysky src="#sky"></a-sky>
+        <a-sky src="#sky"></a-sky>
 
         <!-- Barrier -->
         <a-box repeat="3 1" src="#barrier" position="0 1 10" rotation="0 0 0" width="15" height="1.5"></a-box>
@@ -129,7 +120,7 @@
         <a-box repeat= "10 1" src="#hdbg" position="5 19 -80" rotation="0 0 0" width="1000" height="40" transparent="true"></a-box>
 
         <!-- Camera + cursor. -->
-        <a-entity camera position="-0.8 1.6 0.5" look-controls wasd-controls="acceleration: 500" id="camera">
+        <a-entity camera position="-0.8 1.6 0.5" look-controls id="camera">
           <a-entity cursor="fuse: true; fuseTimeout: 1000"
                     position="0 0 -1"
                     geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
@@ -260,7 +251,7 @@
                     <a-gui-button
                         id="sunBtn"
                         width="1.5" height="0.75"
-                        onclick="setSun();"
+                        onclick="setSky();"
                         value="_"
                         font-family="Impact"
                         font-color="#000"
@@ -268,7 +259,7 @@
                         border-color="#000"
                         hover-color="#DD9E00"
                         border-width="2"> 
-                        <a-image src="#sunIcon" width="0.5" height="0.5" position="0 0 0.25"></a-image>
+                        <a-image src="#sun" width="0.5" height="0.5" position="0 0 0.25"></a-image>
                     </a-gui-button>
                     <a-gui-button
                         id="rainBtn"
@@ -281,7 +272,7 @@
                         border-color="#000"
                         hover-color="#DD9E00"
                         border-width="2">
-                        <a-image src="#rainIcon" width="0.5" height="0.5" position="0 0 0.25"></a-image> 
+                        <a-image src="#rain" width="0.5" height="0.5" position="0 0 0.25"></a-image> 
                     </a-gui-button>
                     <a-gui-button
                         id="moonBtn"
@@ -295,7 +286,7 @@
                         border-color="#000"
                         hover-color="#DD9E00"
                         border-width="2">
-                        <a-image src="#moonIcon" width="0.5" height="0.5" position="-0.2 0 0.25"></a-image>  
+                        <a-image src="#moon" width="0.5" height="0.5" position="-0.2 0 0.25"></a-image>  
                     </a-gui-button>
                 </a-gui-flex-container>
                 <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="0.8" width="9" height="1" position="5 5.5 -5" rotation="0 0 0" panel-color="#FFDA03">
@@ -323,38 +314,31 @@
                         border-width="2"> 
                     </a-gui-button>
                 </a-gui-flex-container>
-             
-             
-
             </a-gui-flex-container>
-    
         </a-entity>
+
+        <a-text id="prompt" width="10" value="Settings Saved" font="monoid" position="-1.8 4.6 -4.5" rotation="0 0 0" color="#ff5230" visible="false"></a-text>
+
     </a-scene>
 </body>
 </html>
 
 <script>
-
     var sunBtn = document.getElementById('sunBtn');
     var rainBtn = document.getElementById('rainBtn');
     var moonBtn = document.getElementById('moonBtn');
-
     var pedestriansCount = document.getElementById('pedestriansVal').getAttribute('value');
     var vehiclesCount = document.getElementById('vehiclesVal').getAttribute('value');
     var weather = "sky";
-
     function setSun(){
         weather = "sky";
     }
-
     function setRain(){
         weather = "rain";
     }
-
     function setNight(){
         weather = "night";
     }
-
     function addPedestrians(){
         if (pedestriansCount <4){
             pedestriansCount++;
@@ -362,7 +346,6 @@
             console.log(pedestriansCount);
         }
     };
-
     function addVehicles(){
         if (vehiclesCount <7){
             vehiclesCount++;
@@ -371,7 +354,6 @@
         }
         
     };
-
     function subtractPedestrians(){
         if (pedestriansCount > 1){
             pedestriansCount--;
@@ -379,7 +361,6 @@
             console.log(pedestriansCount);
         }
     };
-
     function subtractVehicles(){
         if (vehiclesCount > 1){
             vehiclesCount--;
@@ -387,33 +368,28 @@
             console.log(vehiclesCount);
         }
     };
-
     function updatePedestrians(){
         document.getElementById('pedestriansVal').setAttribute('font-color','#FFF');
         document.getElementById('pedestriansVal').setAttribute('background-color','#FFF');
         document.getElementById('pedestriansVal').setAttribute('value',pedestriansCount);
         document.getElementById('pedestriansVal').setAttribute('font-color','#000');
     }
-
     function updateVehicles(){
         document.getElementById('vehiclesVal').setAttribute('font-color','#FFF');
         document.getElementById('vehiclesVal').setAttribute('background-color','#FFF');
         document.getElementById('vehiclesVal').setAttribute('value',vehiclesCount);
         document.getElementById('vehiclesVal').setAttribute('font-color','#000');
     }
-
-
     // Button href links
     function toHome(){
         window.location.replace("index.html");
     }
-
     // Save to JSON file
     function toSave(){
         setPedestrians(pedestriansCount);
         setVehicles(vehiclesCount);
         setWeather(weather);
         storeEnvironments();
+        document.getElementById('prompt').setAttribute('visible','true');
     }
-
 </script>

@@ -6,10 +6,10 @@ VIRAC is a Virtual Reality (VR) system that guides Cyclists, Personal Mobility D
 adjust the environment and settings of the system as this is only available for the SCTF members.
 
 ## Glossary
-ViRAC - Virtual Riding and Cycling
-VR - Virtual Reality
-SCTF - Singapore Cycling Task Force
-PMD - Personal Mobility Device
+  - ViRAC - Virtual Riding and Cycling
+  - VR - Virtual Reality
+  - SCTF - Singapore Cycling Task Force
+  - PMD - Personal Mobility Device
 
 
 ## Getting Started 
@@ -20,6 +20,11 @@ https://github.com/andrew9595/ViRac/
 or clone the repository -   
 ```sh
 git clone https://github.com/andrew9595/ViRac.git
+```
+
+## Demo
+```sh
+https://www.youtube.com/watch?v=fhNdONhzVBY
 ```
 
 ### Prerequisites
