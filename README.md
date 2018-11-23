@@ -2,7 +2,7 @@
 ![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/menu.jpg)
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-VIRAC is a Virtual Reality (VR) system that guides Cyclists, Personal Mobility Device (PMD) and Road. Users on the latest rules that have been implemented by Singapore Cycling Task Force (SCTF). This system will allow users to experience what it is like being a bicycle/PMD user in Singapore. It will also show the cyclists how to prepare before and during a ride on the PMD/bicycle, at the Park Connector Network (PCN), Pedestrian Walkways and even on Roads. It will also show the users how to properly park their bicycle/PMDs when the user comes to a stop. This system will also allow SCTF members to adjust the number of vehicles, pedestrians and even the environment of the system . After adjusting the settings of the system, SCTF members are also allowed to play on the ViRAC system and test out the environment of the system. Normal users, that is to say non-SCTF members, will not have the ability to
+VIRAC is a Virtual Reality (VR) system that guides Cyclists, Personal Mobility Device (PMD) and Road Users on the latest rules that have been implemented by Singapore Cycling Task Force (SCTF). This system will allow users to experience what it is like being a bicycle/PMD user in Singapore. It will also show the cyclists how to prepare before and during a ride on the PMD/bicycle, at the Park Connector Network (PCN), Pedestrian Walkways and even on Roads. It will also show the users how to properly park their bicycle/PMDs when the user comes to a stop. This system will also allow SCTF members to adjust the number of vehicles, pedestrians and even the environment of the system. After adjusting the settings of the system, SCTF members are also allowed to play on the ViRAC system and test out the environments of the system. Normal users, that is to say non-SCTF members, will not have the ability to
 adjust the environment and settings of the system as this is only available for the SCTF members.
 
 ## Getting Started 
@@ -16,15 +16,15 @@ git clone https://github.com/azmansalleh/team13.git
 ```
 
 ### Prerequisites
-ViRac is very simple VR experience to use. Ensure you have a local web server solution to run on such as MAMP or XAMPP together with a web browser, preferably Chrome or Firefox. You will also need a mobile phone running android 7.0 and later for testing the environment.
-Download MAMP or XAMPP:
+ViRac is very simple VR experience to use. Ensure you have a local web server solution to run on such as LAMP,MAMP or XAMPP together with a web browser, preferably Chrome or Firefox. You will also need a mobile phone running android 7.0 or later for testing the environment.
+Download LAMP or MAMP or XAMPP:
 ```sh
 https://www.apachefriends.org/download.html
 ```
 
 ### Installing
 ##### XAMPP
-In order to run on the XAMPP web server on your client
+In order to run the XAMPP web server on your client
 1. Run your XAMPP control panel
 2. Start the Apache module on your panel and ensure the port is running
 3. Unzip the repo and copy it over to the htdocs folder found in your **xampp** folder
@@ -44,7 +44,7 @@ localhost:8888/virac
 ```
 
 ## Features
-The features revolve around the user travelling around a Singapore neighborhood within the rules of traffic regulations by Singapore Land Transport Authority. Users will also have the opportunity to learn about the dos and don'ts while travelling on different routes. 
+The features revolve around the user travelling through a neighborhood in Singapore within the rules of traffic regulations stipulated by Singapore's Land Transport Authority. Users will also have the opportunity to learn about the dos and don'ts while travelling on different routes. 
 
 ### SCTF Menu
 SCTF members will have the ability to change the environment and add in more objects to increase the difficulty.
