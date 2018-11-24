@@ -5,7 +5,19 @@
     <meta name="viewport" content="width=device-width">
     <title>Virac</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/engine.js"></script>
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script>
+        $.getJSON( "environment.json", function( data ) {
+            //Loading the sky variable
+            AFRAME.registerComponent('mysky', {
+                init:function(){
+                    this.el.setAttribute('src','#' + data['environment']);
+                }
+            });
+        });
+    </script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.2.0/dist/aframe-extras.min.js"></script> <!--Extra--->
     <script src="https://cdn.rawgit.com/zcanter/aframe-gradient-sky/master/dist/gradientsky.min.js"></script> <!--Weather--->
     <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script> <!--GUI--->
@@ -17,49 +29,87 @@
     <a-scene>
         <a-assets>
             <!-- All images assets -->
-            <img id="sky" src="images/sky.png">
-            <img id="road" src="images/road.jpg">
-            <img id="sideroad" src="images/sideroad.jpg">
-            <img id="grass" src="images/grass.jpg">
-            <img id="cpavement" src="images/cycling_pavement.jpg">
-            <img id="walkway" src="images/walkway.jpg">
-            <img id="floor" src="images/floor.jpg">
-            <img id="segway" src="images/segway.png">
-            <img id="bicycle" src="images/bicycle.png">
-            <img id="barrier" src="images/barrier.png">
+            <img id="sky" src="images/environment/sky.png">
+            <img id="night" src="images/environment/night.jpg">
+            <img id="rain" src="images/environment/rain.jpg">
+            <img id="road" src="images/environment/road.jpg">
+            <img id="sideroad" src="images/environment/sideroad.jpg">
+            <img id="grass" src="images/environment/grass.jpg">
+            <img id="cpavement" src="images/environment/cycling_pavement.jpg">
+            <img id="walkway" src="images/environment/walkway.jpg">
+            <img id="segway" src="images/menu/segway.png">
+            <img id="bicycle" src="images/menu/bicycle.png">
+            <img id="barrier" src="images/environment/barrier.png">
+            <img id="hdb" src="images/environment/hdb.png">
+            <img id="hdbg" src="images/environment/hdbg.png">
+            <img id="park" src="images/environment/park.png">
         </a-assets>
 
-        <!-- Envrionments -->
-        <a-sky src="#sky"></a-sky>
-        <a-plane repeat="1 10" src="#road" position="0 0 -4" rotation="-90 0 0" width="10" height="100" color="#7BC8A4" shadow></a-plane>
-        <a-plane repeat="1 10" src="#road" position="0 0 -59" rotation="-90 -90 0" width="10" height="100" color="#7BC8A4" shadow></a-plane>
-        
+        <!-- Sky -->
+        <a-sky mysky src="#sky"></a-sky>
 
-       <!--  <a-plane repeat="1 10" src="#floor" position="7.5 0 -4" rotation="-90 0 0" width="5" height="100" color="#7BC8A4" shadow></a-plane>
-        <a-plane repeat="1 10" src="#floor" position="-7.5 0 -4" rotation="-90 0 0" width="5" height="100" color="#7BC8A4" shadow></a-plane> -->
-        <a-box repeat="3 1" src="#barrier" position="0 1 10" rotation="0 0 0" width="15" height="1.5"></a-box>    
+        <!-- Barrier -->
+        <a-box repeat="3 1" src="#barrier" position="0 1 10" rotation="0 0 0" width="15" height="1.5"></a-box>
 
-        <a-plane repeat="1 50" src="#sideroad" position="5.2 0 -4" rotation="-90 0 0" width="0.6" height="100" color="#7BC8A4" shadow></a-plane>
-        <a-plane repeat="1 50" src="#sideroad" position="-5.2 0 -4" rotation="-90 0 0" width="0.6" height="100" color="#7BC8A4" shadow></a-plane>
+        <!-- Roads -->
+        <a-plane repeat="1 10" src="#road" position="0 0 -4" rotation="-90 0 0" width="10" height="96" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 10" src="#road" position="50 0 -57" rotation="-90 -90 0" width="10" height="230" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 10" src="#road" position="159.1 0 -4" rotation="-90 0 0" width="10" height="96" color="#7BC8A4" shadow></a-plane>
 
-        <a-plane repeat="1 100" src="#grass" position="7 0 -4" rotation="-90 0 0" width="3" height="100" color="#7BC8A4" shadow></a-plane>
-        <a-plane repeat="1 100" src="#grass" position="-7 0 -4" rotation="-90 0 0" width="3" height="100" color="#7BC8A4" shadow></a-plane>
+        <!-- Side Road -->
+        <a-plane repeat="1 50" src="#sideroad" position="5.2 0 -4" rotation="-90 0 0" width="0.6" height="95" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 50" src="#sideroad" position="-5.2 0 -4" rotation="-90 0 0" width="0.6" height="96" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 50" src="#sideroad" position="55 0 -51.8" rotation="-90 90 0" width="0.6" height="190" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 50" src="#sideroad" position="55 0 -62.2" rotation="-90 90 0" width="0.6" height="190" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 50" src="#sideroad" position="153.8 0 48" rotation="-90 0 0" width="0.6" height="200" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 50" src="#sideroad" position="164.2 0 48" rotation="-90 0 0" width="0.6" height="200" color="#7BC8A4" shadow></a-plane>
 
-        <a-plane repeat="1 100" src="#cpavement" position="11 0 -4" rotation="-90 0 0" width="5" height="100" color="#7BC8A4" shadow></a-plane>
-        <a-plane repeat="1 100" src="#cpavement" position="-11 0 -4" rotation="-90 0 0" width="5" height="100" color="#7BC8A4" shadow></a-plane>
+        <!-- Grass -->
+        <a-plane repeat="1 100" src="#grass" position="7 0 -4" rotation="-90 0 0" width="3" height="95" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 100" src="#grass" position="-7 0 -4" rotation="-90 0 0" width="3" height="96" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 100" src="#grass" position="152 0 -4" rotation="-90 0 0" width="3" height="95" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 100" src="#grass" position="50 0 -70" rotation="-90 -90 0" width="15" height="230" shadow></a-plane>
 
-        <a-plane repeat="1 100" src="#walkway" position="16 0 -4" rotation="-90 0 0" width="5" height="100" color="#7BC8A4" shadow></a-plane>
-        <a-plane repeat="1 100" src="#walkway" position="-16 0 -4" rotation="-90 0 0" width="5" height="100" color="#7BC8A4" shadow></a-plane>
+        <!-- Pavement -->
+        <a-plane repeat="1 100" src="#cpavement" position="11 0 -4" rotation="-90 0 0" width="5" height="85" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 100" src="#cpavement" position="-11 0 -4" rotation="-90 0 0" width="5" height="96" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 100" src="#cpavement" position="79.5 0 -49" rotation="-90 90 0" width="5" height="142" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 100" src="#cpavement" position="148 0 13" rotation="-90 0 0" width="5" height="120" color="#7BC8A4" shadow></a-plane>
 
-        <a-box repeat="1 100" position="21 0 -4" rotation="-90 0 0" width="5" height="100" color="#fc8c76" depth="50" shadow></a-box>
-        <a-box repeat="1 100" position="-21 0 -4" rotation="-90 0 0" width="5" height="100" color="#fc8c76" depth="50" shadow></a-box>
+        <!-- Walkway -->
+        <a-plane repeat="1 100" src="#walkway" position="16 0 -4" rotation="-90 0 0" width="5" height="85" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 100" src="#walkway" position="-16 0 -4" rotation="-90 0 0" width="5" height="96" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 100" src="#walkway" position="79 0 -44" rotation="-90 90 0" width="5" height="123" color="#7BC8A4" shadow></a-plane>
+        <a-plane repeat="1 100" src="#walkway" position="143 0 13.5" rotation="-90 0 0" width="5" height="120" color="#7BC8A4" shadow></a-plane>
 
+        <!-- Building -->
+        <a-box repeat= "3 3" src="#hdb" position="19 30 10" rotation="0 90 0" width="100" height="60"></a-box>
+        <a-box repeat= "3 3" src="#hdb" position="-19 30 -4" rotation="0 90 0" width="120" height="60"></a-box>
+        <a-box repeat= "3 3" src="#hdb" position="78.5 30 -41" rotation="0 0 0" width="120" height="60"></a-box>
+        <a-box repeat= "3 3" src="#hdb" position="140 30 19" rotation="0 90 0" width="120" height="60"></a-box>
+        <a-box repeat= "5 1" src="#park" position="165.06 5 19" rotation="0 90 0" width="200" height="20" transparent="true"></a-box>
 
+        <!-- Finish line -->
+        <a-box position="145 15 10" rotation="0 0 0" width="40" height="10" color="#FFDA03">
+            <a-text width="150" value="Finish" font="monoid" position="19 1 -1" rotation="0 180 0" color="#2B2B2B"></a-text>
+        </a-box>
+        <a-cone position="145 0 10" rotation="0 90 0" width="100" height="40" color="#FFDA03"></a-cone>
+        <a-cone position="162 0 10" rotation="0 90 0" width="100" height="40" color="#FFDA03"></a-cone>
 
+        <!-- Traffic Light -->
+        <a-cylinder position="-10 0 -50" rotation="0 90 0" width="10" height="20" color="#ccd4e2" radius="0.5">
+            <a-box position="0 10 7" rotation="0 90 90" width="3" height="15" color="#303030">
+                <a-circle id="red" position="0 5.5 -1" rotation="0 180 0" width="3" height="7" color="#ff1d00" visible="false"></a-circle>
+                <a-circle id="yellow" position="0 3 -1" rotation="0 180 0" width="3" height="7" color="#ffb200" visible="false"></a-circle>
+                <a-circle id="green" position="0 0.5 -1" rotation="0 180 0" width="3" height="7" color="#13e500" visible="false"></a-circle>
+            </a-box>
+        </a-cylinder>
 
+        <!-- Background -->
+        <a-box repeat= "10 1" src="#hdbg" position="5 19 -80" rotation="0 0 0" width="1000" height="40" transparent="true"></a-box>
 
         <!-- Camera + cursor. -->
-        <a-entity camera position="2 1.6 0.5" look-controls wasd-controls="acceleration: 200">
+        <a-entity camera position="0 1.6 0.5" look-controls id="camera">
           <a-entity cursor="fuse: true; fuseTimeout: 1000"
                     position="0 0 -1"
                     geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
@@ -67,17 +117,15 @@
             <a-animation begin="click" easing="ease-in" attribute="scale"
                          fill="backwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
             <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
-                         fill="forwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
+                         fill="backwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
           </a-entity>
-          <a-entity geometry="primitive: plane; height: 0.4; width: 1.2" position="-1.45 0.7 -1" material="color: gray; opacity: 0.5" id="hazardID"></a-entity>
-          <a-entity geometry="primitive: plane; height: 0.4; width: 1.2" position="1.40 0.7 -1" material="color: gray; opacity: 0.5" id="hazardID"></a-entity>
         </a-entity>
         
         <!-- Start menu -->
-        <a-entity id="scene0">  
-            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" component-padding="1" opacity="1" width="9" height="4.5" position="0 2.5 -2" rotation="0 0 0" panel-color="#FFDA03">
+        <a-entity id="menu">  
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="9" height="4.5" position="0 2.5 -5" rotation="0 0 0" panel-color="#FFDA03">
                 <a-gui-label 
-                    width="4" height="1"
+                    width="3" height="1"
                     value="Virac"
                     font-family="Impact"
                     font-size = "350px"
@@ -86,106 +134,143 @@
                     background-color="#FFDA03">
                     <a-text value="Virtual Riding and Cycling" position="-1.2 -0.7 0" color="#2B2B2B"></a-text>
                 </a-gui-label>
-                <a-gui-button
-                    width="3" height="0.75"
-                    onclick="advance0to1()"
-                    icon="social-github"
-                    value="Start Game"
-                    font-family="Impact"
-                    margin="-0.2 0 0.01 1"
-                    background-color="#FFDA03"
-                    font-color="#000"
-                    border-color="#000"
-                    hover-color="#DD9E00"
-                    border-width="2"> 
-                </a-gui-button>
+                <a-gui-flex-container flex-direction="column" justify-content="center" align-items="normal" opacity="0.2" width="4" height="4" position="0 2.5 -5" rotation="0 0 0" panel-color="#FFDA03">
+                    <a-gui-button
+                        width="2.5" height="0.75"
+                        onclick="toStageselect()"
+                        icon="social-github"
+                        value="Start Game"
+                        font-family="Impact"
+                        background-color="#FFDA03"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2"> 
+                    </a-gui-button>
+                    <a-gui-button
+                        width="2.5" height="0.75"
+                        onclick="toTutorial()"
+                        icon="social-github"
+                        value="Tutorial"
+                        font-family="Impact"
+                        margin="-0.2 0 0.4 0.5"
+                        background-color="#FFDA03"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2"> 
+                    </a-gui-button>
+                    <a-gui-button
+                        width="2.5" height="0.75"
+                        onclick="toAchievements()"
+                        icon="social-github"
+                        value="Achievements"
+                        font-family="Impact"
+                        margin="-0.2 0 0.6 0"
+                        background-color="#FFDA03"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2"> 
+                    </a-gui-button>
+                    <a-gui-button
+                        width="2.5" height="0.75"
+                        onclick="toDesignerint()"
+                        icon="social-github"
+                        value="Designer Interface"
+                        font-family="Impact"
+                        background-color="#FFDA03"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2"> 
+                    </a-gui-button>
+                </a-gui-flex-container>
             </a-gui-flex-container>
         </a-entity>
 
-        <!-- Choose Mode -->
-        <a-entity id="scene1">
-            <a-text value="Select Mode" font="monoid" position="-0.4 1.4 -4.25" color="#2B2B2B"></a-text>
-            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" component-padding="1" opacity="1" width="9" height="4.5" position="0 2.5 -10" rotation="0 0 0" panel-color="#FFDA03">
-                <a-gui-button
-                    onclick="advance1to2('cyclist')"
-                    width="4" height="4.5"
-                    value="i"
-                    font-family="Impact"
-                    background-color="#FFDA03"
-                    margin="0 1 0 0"
-                    font-color="#000"
-                    border-color="#000"
-                    hover-color="#DD9E00"
-                    border-width="2"> 
-                    <a-image src="#bicycle" width="2" height="2" position="0.2 0 0.25"></a-image>
-                    <a-text value="Cyclist" font="monoid" position="-0.4 1.4 0.25" color="#2B2B2B"></a-text>
-                </a-gui-button>
-                <a-gui-button
-                    onclick="advance1to2('pmd')"
-                    width="4" height="4.5"
-                    icon="social-github"
-                    value="Start Game"
-                    font-family="Impact"
-                    background-color="#FFDA03"
-                    font-color="#000"
-                    border-color="#000"
-                    hover-color="#DD9E00"
-                    border-width="2"> 
-                    <a-image src="#segway" width="2" height="2" position="-0.3 0 0.25"></a-image>
-                    <a-text value="PMD User" font="monoid" position="-0.4 1.4 0.25" color="#2B2B2B"></a-text>
-                </a-gui-button>
+        <a-entity id="quit">  
+            <a-gui-flex-container flex-direction="row" justify-content="center" align-items="normal" opacity="1" width="9" height="4.5" position="0 2.5 7" rotation="0 0 0" panel-color="#c20300">
+                <a-gui-flex-container flex-direction="column" justify-content="center" align-items="normal" opacity="0.2" width="4" height="3" position="0 2.5 -5" rotation="0 180 0" panel-color="#FFDA03">
+                    <a-gui-button
+                        width="2.5" height="0.75"
+                        onclick="quitGame()"
+                        icon="social-github"
+                        value="Quit Game"
+                        font-family="Impact"
+                        margin="-0.2 0 0.6 1"
+                        background-color="#c20300"
+                        font-color="#000"
+                        border-color="#000"
+                        hover-color="#DD9E00"
+                        border-width="2"> 
+                    </a-gui-button>
+                </a-gui-flex-container>
             </a-gui-flex-container>
         </a-entity>
-        
-        <!-- Choose Mode -->
-        <a-entity id="scene2">
-            <a-text value="Preparation" font="monoid" position="1 2.4 -6.25" color="#2B2B2B"></a-text>
-            <a-text value="Select equipment needed for the journey" font="monoid" position="-0.4 2 -6.25" color="#2B2B2B"></a-text>
-
-             <a-gui-flex-container flex-direction="column" justify-content="center" align-items="normal" component-padding="0.1" opacity="1" width="3" height="4.5" position="-3 2.5 -12" rotation="0 0 0" panel-color="#FFDA03">
-                <a-gui-button width="2" height="1.3" onclick="clickOne" value="Helmet" font-family="Arial" font-color="#000" background-color="#FFDA03" border-color="#000" margin="0.1 0 0 0"></a-gui-button>
-                <a-gui-button width="2" height="1.3" onclick="clickOne" value="Slippers" font-family="Arial" font-color="#000" background-color="#FFDA03" border-color="#000" margin="0.1 0 0 0"></a-gui-button>
-                <a-gui-button width="2" height="1.3" onclick="clickOne" value="Lights" font-family="Arial" font-color="#000" background-color="#FFDA03" border-color="#000" margin="0.1 0 0 0"></a-gui-button>
-            </a-gui-flex-container>
-
-            <a-gui-flex-container flex-direction="column" justify-content="center" align-items="normal" component-padding="0.1" opacity="1" width="3" height="4.5" position="0 2.5 -12" rotation="0 0 0" panel-color="#FFDA03">
-                <a-gui-button width="2" height="1.3" onclick="clickOne" value="Shoes" font-family="Arial" font-color="#000" background-color="#FFDA03" border-color="#000" margin="0.1 0 0 0"></a-gui-button>
-                <a-gui-button width="2" height="1.3" onclick="clickOne" value="1" font-family="Arial" font-color="#000" background-color="#FFDA03" border-color="#000" margin="0.1 0 0 0"></a-gui-button>
-                <a-gui-button width="2" height="1.3" onclick="clickOne" value="1" font-family="Arial" font-color="#000" background-color="#FFDA03" border-color="#000" margin="0.1 0 0 0"></a-gui-button>
-            </a-gui-flex-container>
-
-            <a-gui-flex-container flex-direction="column" justify-content="center" align-items="normal" component-padding="0.1" opacity="1" width="3" height="4.5" position="3 2.5 -12" rotation="0 0 0" panel-color="#FFDA03">
-                <a-gui-button width="2" height="1.3" onclick="clickOne" value="1" font-family="Arial" font-color="#000" background-color="#FFDA03" border-color="#000" margin="0.1 0 0 0"></a-gui-button>
-                <a-gui-button width="2" height="1.3" onclick="clickOne" value="1" font-family="Arial" font-color="#000" background-color="#FFDA03" border-color="#000" margin="0.1 0 0 0"></a-gui-button>
-                <a-gui-button width="2" height="1.3" onclick="clickOne" value="1" font-family="Arial" font-color="#000" background-color="#FFDA03" border-color="#000" margin="0.1 0 0 0"></a-gui-button>
-            </a-gui-flex-container>
-        </a-entity>
-
 
     </a-scene>
 </body>
 </html>
 
 <script>
-    function setStage(){
-        document.getElementById('scene0').setAttribute('visible', 'true');
-        document.getElementById('scene1').setAttribute('visible', 'false');
-        document.getElementById('scene2').setAttribute('visible', 'false');
-    }
 
+    //Set stage 
     setStage();
 
-    function advance0to1(){
-        console.log("Echo after me ah")
-        document.getElementById('scene0').setAttribute('visible', 'false');
-        document.getElementById('scene1').setAttribute('visible', 'true');
+    //Set the stage of page assets on load
+    function setStage(){
+        greenLight();
     }
 
-    function advance1to2(mode){
-        console.log("Screen2");
-        document.getElementById('scene0').setAttribute('visible', 'false');
-        document.getElementById('scene1').setAttribute('visible', 'false');
-        document.getElementById('scene2').setAttribute('visible', 'true');
+    // Button href links
+    function toStageselect(){
+        window.location.replace("selectpmd.html");
     }
 
+     function toTutorial(){
+        window.location.replace("tutorial.html");
+    }
+
+     function toDesignerint(){
+        window.location.replace("authenticate.html");
+    }
+
+     function toAchievements(){
+        window.location.replace("achievement.html");
+    }
+
+    function quitGame(){
+        window.location.replace("quit.html");
+    }
+
+    function greenLight() {
+        setTimeout(function(){
+            document.getElementById('red').setAttribute('visible', 'false');
+            document.getElementById('yellow').setAttribute('visible', 'false');
+            document.getElementById('green').setAttribute('visible', 'true');
+            console.log('Green Light activated');
+            yellowLight();  
+        }, 12000);   
+    }
+
+    function yellowLight() {
+        setTimeout(function(){
+            document.getElementById('red').setAttribute('visible', 'false');
+            document.getElementById('yellow').setAttribute('visible', 'true');
+            document.getElementById('green').setAttribute('visible', 'false');
+            console.log('Yellow Light activated');
+            redLight();
+        }, 8000);    
+    }
+
+    function redLight() {
+        setTimeout(function(){
+            document.getElementById('red').setAttribute('visible', 'true');
+            document.getElementById('yellow').setAttribute('visible', 'false');
+            document.getElementById('green').setAttribute('visible', 'false');
+            console.log('Red Light activated');
+            greenLight()
+        }, 2000);
+    }
 </script>
