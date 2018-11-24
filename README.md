@@ -109,6 +109,10 @@ User will also have an opportunity to learn about the rules to follow while proc
 * **Cheryl Ng (1702422)**
 * **Lee Yao En (1700178)**
 
+## Versioning
+Please refer to our [Release](https://github.com/andrew9595/ViRac/releases) page to find out more.
+
+
 ## FAQ
 
 #### Is this a single player experience?
