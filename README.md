@@ -68,7 +68,7 @@ Users will be able to learn on different aspects of the game such as movements, 
 ### Achievements
 The user can hover the cursor over the "Show Achievement" button and a list of Achievements will appear. If an achievement is shaded out, it has not been achieved, and if it is in full colour, it has been attained. Hovering the cursor over an unlocked achievement will show the prerequisites required to unlock it. (e.g. Hovering over an achievement may show information such as "You have finished a tutorial.")
 
-![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/tutorial.jpg)
+![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/achievements.jpg)
 
 ### Pause Game
   - User can pause the game while in progress.
