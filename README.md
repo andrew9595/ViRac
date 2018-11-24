@@ -124,8 +124,8 @@ Preferably Google Chrome or Mozilla Firefox
 #### What's the recommmended browser to run ViRac?
 Preferably Google Chrome or Mozilla Firefox
 
-#### Do I exclusively need a VR headset to play ViRac?
-Nope! We encourage users to immerse themselves in the VR experience by using a VR headset such as Google Cardboard
+#### Do I exclusively need a VR headset to play ViRac
+Nope! We do encourage users to immerse themselves in the VR experience through the use of VR peripherals such as Google Cardboard
 
 License
 ----
