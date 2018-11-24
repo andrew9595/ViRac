@@ -1,6 +1,5 @@
 # ViRAC (Virtual Riding and Cycling)
 ![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/menu.jpg)
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
 VIRAC is a Virtual Reality (VR) system that guides Cyclists, Personal Mobility Device (PMD) and Road Users on the latest rules that have been implemented by Singapore Cycling Task Force (SCTF). This system will allow users to experience what it is like being a bicycle/PMD user in Singapore. It will also show the cyclists how to prepare before and during a ride on the PMD/bicycle, at the Park Connector Network (PCN), Pedestrian Walkways and even on Roads. It will also show the users how to properly park their bicycle/PMDs when the user comes to a stop. This system will also allow SCTF members to adjust the number of vehicles, pedestrians and even the environment of the system. After adjusting the settings of the system, SCTF members are also allowed to play on the ViRAC system and test out the environments of the system. Normal users, that is to say non-SCTF members, will not have the ability to
 adjust the environment and settings of the system as this is only available for the SCTF members.
@@ -77,22 +76,18 @@ The user can hover the cursor over the "Show Achievement" button and a list of A
 ### Riding on Different Routes
 Users will be able to ride a pre-selected bicycle or PMD by selecting different routes such as road, PCN and walkway. Each route will present the user with different scenarios.
 
-	Route - Road
-	Scenario - Pedestrain Crossing, Vehicle Breakdown, Traffic light rules, Checking blind spots
-	
-	Route - PCN
-	Scenario - Pedestrain Crossing, Road Crossing, Checking blind spots
-	
-	Route - Walkway
-	Scenario - Avoiding Pedestrain, Checking blind spots, Pedestrain Crossing
+| Route   | Scenarios                                                                                 |
+|---------|-------------------------------------------------------------------------------------------|
+| Road    | - Pedestrian Crossing  - Vehicle Breakdown  - Traffic light rules  - Checking blind spots |
+| PCN     | - Pedestrian Crossing  - Road Crossing  - Checking blind spots                            |
+| Walkway |  - Pedestrian Crossing  - Avoiding pedestrians   - Checking blind spots                   |
+
 ![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/level.png)
 
 ### Additional Knowledge
 User will also have an opportunity to learn about the rules to follow while proceeding on the road via pop quizzes.
 ![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/quiz.png)
 
-## Deployment
-Deploymnet of ViRac is rather straigh forward. Kindly place the root folder onto any server eg. localhost and start your server.
 
 ## Built With
 * [A-frame](https://github.com/aframevr/aframe) - web framework for VR
@@ -110,6 +105,15 @@ Deploymnet of ViRac is rather straigh forward. Kindly place the root folder onto
 
 #### Is this a single player experience?
 Yes
+
+#### What's the recommmended browser to run ViRac?
+Preferably Google Chrome or Mozilla Firefox
+
+#### What's the recommmended browser to run ViRac?
+Preferably Google Chrome or Mozilla Firefox
+
+#### Do I exclusively need a VR headset to play ViRac?
+Nope! We encourage users to immerse themselves in the VR experience by using a VR headset such as Google Cardboard
 
 License
 ----
