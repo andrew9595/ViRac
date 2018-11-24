@@ -1,5 +1,5 @@
 # ViRAC (Virtual Riding and Cycling)
-![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/menu.jpg)
+![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/logo.png)
 
 VIRAC is a Virtual Reality (VR) system that guides Cyclists, Personal Mobility Device (PMD) and Road Users on the latest rules that have been implemented by Singapore Cycling Task Force (SCTF). This system will allow users to experience what it is like being a bicycle/PMD user in Singapore. It will also show the cyclists how to prepare before and during a ride on the PMD/bicycle, at the Park Connector Network (PCN), Pedestrian Walkways and even on Roads. It will also show the users how to properly park their bicycle/PMDs when the user comes to a stop. This system will also allow SCTF members to adjust the number of vehicles, pedestrians and even the environment of the system. After adjusting the settings of the system, SCTF members are also allowed to play on the ViRAC system and test out the environments of the system. Normal users, that is to say non-SCTF members, will not have the ability to
 adjust the environment and settings of the system as this is only available for the SCTF members.
@@ -56,23 +56,29 @@ localhost:8888/virac
 The features revolves around the user travelling through a neighborhood in Singapore within the traffic regulations stipulated by Singapore's Land Transport Authority. Users will also have the opportunity to learn about the dos and don'ts while travelling on different routes. 
 
 ### SCTF Menu
+Users will be greeted with the ViRac's main menu upon launching the game.
+
+![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/main.png)
+
+### Designer Interface
 SCTF members will have the ability to change the environment and add in more objects to increase the difficulty.
 
-![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/designer.jpg)
+![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/designer.png)
 
 ### Tutorial
 Users will be able to learn on different aspects of the game such as movements, camera controls and object interactions.
 
-![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/tutorial.jpg)
+![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/tutorial.png)
 
 ### Achievements
 The user can hover the cursor over the "Show Achievement" button and a list of Achievements will appear. If an achievement is shaded out, it has not been achieved, and if it is in full colour, it has been attained. Hovering the cursor over an unlocked achievement will show the prerequisites required to unlock it. (e.g. Hovering over an achievement may show information such as "You have finished a tutorial.")
 
-![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/achievements.jpg)
+![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/achievements.png)
 
 ### Pause Game
   - User can pause the game while in progress.
   - User can resume the game when the game is in paused state.
+  - User can quit the game when the game is in paused state.
 
 ### Riding on Different Routes
 Users will be able to ride a pre-selected bicycle or PMD by selecting different routes such as road, PCN and walkway. Each route will present the user with different scenarios.
@@ -83,7 +89,7 @@ Users will be able to ride a pre-selected bicycle or PMD by selecting different 
 | PCN     | - Pedestrian Crossing, Road Crossing, Checking blind spots                            |
 | Walkway |  - Pedestrian Crossing, Avoiding pedestrians, Checking blind spots                   |
 
-![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/level.png)
+![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/levels.png)
 
 ### Additional Knowledge
 User will also have an opportunity to learn about the rules to follow while proceeding on the road via pop quizzes.
