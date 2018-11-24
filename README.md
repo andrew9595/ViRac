@@ -55,7 +55,7 @@ localhost:8888/virac
 ## Features
 The features revolves around the user travelling through a neighborhood in Singapore within the traffic regulations stipulated by Singapore's Land Transport Authority. Users will also have the opportunity to learn about the dos and don'ts while travelling on different routes. 
 
-### SCTF Menu
+### Main Menu
 Users will be greeted with the ViRac's main menu upon launching the game.
 
 ![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/main.png)
@@ -77,8 +77,8 @@ The user can hover the cursor over the "Show Achievement" button and a list of A
 
 ### Pause Game
   - User can pause the game while in progress.
-  - User can resume the game when the game is in paused state.
-  - User can quit the game when the game is in paused state.
+  - User can resume the game when it is paused.
+  - User can quit the game if it is paused.
 
 ### Riding on Different Routes
 Users will be able to ride a pre-selected bicycle or PMD by selecting different routes such as road, PCN and walkway. Each route will present the user with different scenarios.
@@ -87,7 +87,7 @@ Users will be able to ride a pre-selected bicycle or PMD by selecting different 
 |---------|-------------------------------------------------------------------------------------------|
 | Road    | - Pedestrian Crossing, Vehicle Breakdown, Traffic light rules, Checking blind spots |
 | PCN     | - Pedestrian Crossing, Road Crossing, Checking blind spots                            |
-| Walkway |  - Pedestrian Crossing, Avoiding pedestrians, Checking blind spots                   |
+| Walkway | - Pedestrian Crossing, Avoiding pedestrians, Checking blind spots                   |
 
 ![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/levels.png)
 
@@ -109,7 +109,7 @@ User will also have an opportunity to learn about the rules to follow while proc
 * **Cheryl Ng (1702422)**
 * **Lee Yao En (1700178)**
 
-## Versioning
+## Version
 Please refer to our [Release](https://github.com/andrew9595/ViRac/releases) page to find out more.
 
 
@@ -121,7 +121,7 @@ Yes
 #### What's the recommmended browser to run ViRac?
 Preferably Google Chrome or Mozilla Firefox
 
-#### Do I exclusively need a VR headset to play ViRac?
+#### Do I need a VR headset to play ViRac?
 Nope! However, we do encourage users to immerse themselves into the game through the use of VR peripherals such as Google Cardboard.
 
 License
