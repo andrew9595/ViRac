@@ -22,9 +22,7 @@ git clone https://github.com/andrew9595/ViRac.git
 ```
 
 ## Demo
-```sh
 https://www.youtube.com/watch?v=fhNdONhzVBY
-```
 
 ### Prerequisites
 ViRac is very simple VR experience to use. To begin, ensure you have a local web server solution to run on such as MAMP or XAMPP together with a web browser, preferably Chrome or Firefox. You will also need a mobile phone running android 7.0 or later for testing the environment.
@@ -78,9 +76,9 @@ Users will be able to ride a pre-selected bicycle or PMD by selecting different 
 
 | Route   | Scenarios                                                                                 |
 |---------|-------------------------------------------------------------------------------------------|
-| Road    | - Pedestrian Crossing  - Vehicle Breakdown  - Traffic light rules  - Checking blind spots |
-| PCN     | - Pedestrian Crossing  - Road Crossing  - Checking blind spots                            |
-| Walkway |  - Pedestrian Crossing  - Avoiding pedestrians   - Checking blind spots                   |
+| Road    | - Pedestrian Crossing, Vehicle Breakdown, Traffic light rules, Checking blind spots |
+| PCN     | - Pedestrian Crossing, Road Crossing, Checking blind spots                            |
+| Walkway |  - Pedestrian Crossing, Avoiding pedestrians, Checking blind spots                   |
 
 ![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/level.png)
 
