@@ -57,14 +57,17 @@ The features revolves around the user travelling through a neighborhood in Singa
 
 ### SCTF Menu
 SCTF members will have the ability to change the environment and add in more objects to increase the difficulty.
+
 ![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/designer.jpg)
 
 ### Tutorial
 Users will be able to learn on different aspects of the game such as movements, camera controls and object interactions.
+
 ![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/tutorial.jpg)
 
 ### Achievements
 The user can hover the cursor over the "Show Achievement" button and a list of Achievements will appear. If an achievement is shaded out, it has not been achieved, and if it is in full colour, it has been attained. Hovering the cursor over an unlocked achievement will show the prerequisites required to unlock it. (e.g. Hovering over an achievement may show information such as "You have finished a tutorial.")
+
 ![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/tutorial.jpg)
 
 ### Pause Game
@@ -84,6 +87,7 @@ Users will be able to ride a pre-selected bicycle or PMD by selecting different 
 
 ### Additional Knowledge
 User will also have an opportunity to learn about the rules to follow while proceeding on the road via pop quizzes.
+
 ![alt text](https://github.com/andrew9595/ViRac/blob/master/Screenshots/quiz.png)
 
 
